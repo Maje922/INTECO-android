@@ -20,9 +20,8 @@ public class MyFragment extends Fragment {
         Bundle bdl = new Bundle(1);
         bdl.putString(EXTRA_TEXT, msg);
         f.setArguments(bdl);
-        System.out.println("cambio");
         return f;
-        
+
     }
 
     @Override
