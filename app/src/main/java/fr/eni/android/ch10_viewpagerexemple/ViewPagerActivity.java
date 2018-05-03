@@ -24,11 +24,12 @@ public class ViewPagerActivity extends AppCompatActivity {
         mAdapter = new MyViewPagerAdapter(
                 getSupportFragmentManager());
 
-   /*     mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+       mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position,
                                        float positionOffset,
                                        int positionOffsetPixels) {
+
 
             }
 
@@ -41,7 +42,7 @@ public class ViewPagerActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {
 
             }
-        });*/
+        });
 
         mViewPager.setAdapter(mAdapter);
 

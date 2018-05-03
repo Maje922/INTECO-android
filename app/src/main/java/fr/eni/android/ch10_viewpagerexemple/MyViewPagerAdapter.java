@@ -10,16 +10,25 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class MyViewPagerAdapter extends FragmentPagerAdapter {
 
     private String[] tab;
+    private Fragment[] fragments;
 
     public MyViewPagerAdapter(FragmentManager fm) {
         super(fm);
         tab = new String[]
                 {"posición 1", "posición 2", "posición 3"};
+
+
+        fragments = new Fragment[3];
+        fragments[0] = MyFragment.newInstance(tab[0]);
+        fragments[1] = MyFragment.newInstance(tab[1]);
+        fragments[2] = new info();
     }
 
     @Override
     public Fragment getItem(final int pos) {
-        return MyFragment.newInstance(tab[pos]);
+
+        //return MyFragment.newInstance(tab[pos]);
+        return fragments[pos];
     }
 
     @Override

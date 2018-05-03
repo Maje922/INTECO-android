@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,53 +8,39 @@
 
 
     <ImageButton
-        android:id="@+id/button_tel"
+        android:id="@+id/B_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="127dp"
-        android:layout_marginTop="108dp"
-        app:layout_constraintEnd_toEndOf="@+id/button_gps"
-        app:layout_constraintStart_toStartOf="@+id/button_gps"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_tel" />
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="68dp"
+        android:src="@mipmap/ic_email" />
 
     <ImageButton
-        android:id="@+id/button_email"
+        android:id="@+id/B_gps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/button_gps"
-        android:layout_marginStart="134dp"
-        app:layout_constraintBottom_toBottomOf="@+id/button_tel"
-        app:layout_constraintEnd_toEndOf="@+id/button_pdf"
-        app:layout_constraintStart_toStartOf="@+id/button_pdf"
-        app:layout_constraintTop_toTopOf="@+id/button_tel"
-        app:srcCompat="@mipmap/ic_email" />
-
-    <ImageButton
-        android:id="@+id/button_pdf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/button_gps"
-        android:layout_alignTop="@+id/button_tel"
-        app:layout_constraintBottom_toBottomOf="@+id/button_gps"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button_gps"
-        app:srcCompat="@mipmap/ic_pdf" />
-
-    <ImageButton
-        android:id="@+id/button_gps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/B_email"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="78dp"
-        android:layout_marginTop="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/ic_gps" />
+        android:layout_marginEnd="83dp"
+        android:src="@mipmap/ic_gps" />
 
+    <ImageButton
+        android:id="@+id/B_tel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="217dp"
+        android:layout_marginStart="69dp"
+        android:src="@mipmap/ic_tel" />
 
+    <ImageButton
+        android:id="@+id/B_pdf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/B_gps"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/ic_pdf" />
 </RelativeLayout>
