@@ -14,6 +14,7 @@ public class MyFragment extends Fragment {
 
     public static final String EXTRA_TEXT = "EXTRA_TEXT";
     private String msg;
+    private String hola;
 
     public static Fragment newInstance(final String msg) {
         MyFragment f = new MyFragment();
