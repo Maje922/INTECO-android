@@ -88,6 +88,7 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
     }
     private void CrearGrafica(){
         CombinedData data = new CombinedData();
+        //no añado el dataset de la grafica de barras
         //data.setData(barData());
         data.setData(lineData());
         combinedChart.setData(data);
