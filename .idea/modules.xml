@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/INTECO-android.iml" filepath="$PROJECT_DIR$/INTECO-android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/elora.iml" filepath="$PROJECT_DIR$/elora.iml" />
     </modules>
   </component>
 </project>
