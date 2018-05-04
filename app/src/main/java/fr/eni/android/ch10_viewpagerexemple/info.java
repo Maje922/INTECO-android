@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,29 +51,54 @@ public class info extends Fragment implements View.OnClickListener {
 
         switch (v.getId()){
             case R.id.B_email:
-                Toast.makeText(getActivity(), "seleccionado email", Toast.LENGTH_LONG).show();
+
+                intent = new Intent(Intent.ACTION_SEND);
+
+                intent.setType("text/html");
+                intent.putExtra(Intent.EXTRA_EMAIL, "cosa@gmail.com");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+                intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
+
+                startActivity(intent);
                 break;
             case R.id.B_gps:
-                // Uri geoLocation = "geo:0,0?q=1600+Amphitheatre+Parkway%2C+CA";
-              /*intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData("geo:47.6,-122.3");
 
-                Toast.makeText(this, "seleccionado gps", Toast.LENGTH_LONG).show();*/
+                // Create a Uri from an intent string. Use the result to create an Intent.
+                Uri gmmIntentUri = Uri.parse("google.streetview:cbll=46.414382,10.013988");
+
+                // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
+                intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+
+                // Make the Intent explicit by setting the Google Maps package
+                intent.setPackage("com.google.android.apps.maps");
+
+                // Attempt to start an activity that can handle the Intent
+                startActivity(intent);
+
+                Toast.makeText(getActivity(), "seleccionado gps", Toast.LENGTH_LONG).show();
                 break;
             case R.id.B_pdf:
+
+                FragmentTransaction t = this.getFragmentManager().beginTransaction();
+                Fragment mFrag = new MoreInfo();
+                t.replace(R.id.viewpager, mFrag);
+                t.commit();
+                /*intent = new Intent(getActivity(),MoreInfo.class);
                 Toast.makeText(getActivity(), "seleccionado pdf", Toast.LENGTH_LONG).show();
+                startActivity(intent);*/
                 break;
             case R.id.B_tel:
                 intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:" + 123456789));
                 Toast.makeText(getActivity(), "marcando teléfono", Toast.LENGTH_LONG).show();
+                startActivity(intent);
                 break;
         }
         /*if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
 
         }*/
-        startActivity(intent);
+
     }
 
 }
