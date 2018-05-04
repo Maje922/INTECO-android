@@ -1,0 +1,54 @@
+[1mdiff --git a/.idea/misc.xml b/.idea/misc.xml[m
+[1mindex 19984ab..dc34569 100644[m
+[1m--- a/.idea/misc.xml[m
+[1m+++ b/.idea/misc.xml[m
+[36m@@ -25,7 +25,7 @@[m
+       </value>[m
+     </option>[m
+   </component>[m
+[31m-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">[m
+[32m+[m[32m  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">[m
+     <output url="file://$PROJECT_DIR$/build/classes" />[m
+   </component>[m
+   <component name="ProjectType">[m
+[1mdiff --git a/.idea/modules.xml b/.idea/modules.xml[m
+[1mindex b6d1ee8..63da476 100644[m
+[1m--- a/.idea/modules.xml[m
+[1m+++ b/.idea/modules.xml[m
+[36m@@ -2,8 +2,8 @@[m
+ <project version="4">[m
+   <component name="ProjectModuleManager">[m
+     <modules>[m
+[32m+[m[32m      <module fileurl="file://$PROJECT_DIR$/INTECO-android.iml" filepath="$PROJECT_DIR$/INTECO-android.iml" />[m
+       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />[m
+[31m-      <module fileurl="file://$PROJECT_DIR$/elora.iml" filepath="$PROJECT_DIR$/elora.iml" />[m
+     </modules>[m
+   </component>[m
+ </project>[m
+\ No newline at end of file[m
+[1mdiff --git a/elora.iml b/elora.iml[m
+[1mdeleted file mode 100644[m
+[1mindex 1a483b7..0000000[m
+[1m--- a/elora.iml[m
+[1m+++ /dev/null[m
+[36m@@ -1,19 +0,0 @@[m
+[31m-<?xml version="1.0" encoding="UTF-8"?>[m
+[31m-<module external.linked.project.id="elora" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" type="JAVA_MODULE" version="4">[m
+[31m-  <component name="FacetManager">[m
+[31m-    <facet type="java-gradle" name="Java-Gradle">[m
+[31m-      <configuration>[m
+[31m-        <option name="BUILD_FOLDER_PATH" value="$MODULE_DIR$/build" />[m
+[31m-        <option name="BUILDABLE" value="false" />[m
+[31m-      </configuration>[m
+[31m-    </facet>[m
+[31m-  </component>[m
+[31m-  <component name="NewModuleRootManager" inherit-compiler-output="true">[m
+[31m-    <exclude-output />[m
+[31m-    <content url="file://$MODULE_DIR$">[m
+[31m-      <excludeFolder url="file://$MODULE_DIR$/.gradle" />[m
+[31m-    </content>[m
+[31m-    <orderEntry type="inheritedJdk" />[m
+[31m-    <orderEntry type="sourceFolder" forTests="false" />[m
+[31m-  </component>[m
+[31m-</module>[m
+\ No newline at end of file[m
