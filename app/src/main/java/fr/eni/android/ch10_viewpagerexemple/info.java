@@ -59,8 +59,10 @@ public class info extends Fragment implements View.OnClickListener {
 
                 intent = new Intent(Intent.ACTION_SEND);
 
+
+                String[] to = {this.getResources().getString(R.string.email)};
                 intent.setType("text/html");
-                intent.putExtra(Intent.EXTRA_EMAIL, this.getResources().getString(R.string.email));
+                intent.putExtra(Intent.EXTRA_EMAIL,to);
                 //no envia el valor del email :s
 
                 break;
@@ -75,7 +77,7 @@ public class info extends Fragment implements View.OnClickListener {
                 // Make the Intent explicit by setting the Google Maps package
                 intent.setPackage("com.google.android.apps.maps");
 
-                Toast.makeText(getActivity(), "seleccionado gps", Toast.LENGTH_LONG).show();
+
                 break;
             case R.id.B_pdf:
                 //transation to MoreInfo fragment
