@@ -18,9 +18,9 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
                 {"posición 1", "posición 2", "posición 3"};
 
         fragments = new Fragment[3];
-        fragments[0] = MyFragment.newInstance(tab[0]);
-        fragments[1] = MyFragment.newInstance(tab[1]);
-        fragments[2] = new chart();
+        fragments[0] = new chart();
+        fragments[1] = MyFragment.newInstance(tab[0]);
+        fragments[2] = MyFragment.newInstance(tab[1]);
     }
 
     @Override
