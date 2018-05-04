@@ -23,6 +23,9 @@ public class info extends Fragment implements View.OnClickListener {
     private ImageButton B_gps;
     private ImageButton B_more;
 
+    //singleton con la informacion de la empresa almacenada
+    private Informacion informacion;
+
     public info() {
         // Required empty public constructor
     }
@@ -34,6 +37,9 @@ public class info extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_info, container, false);
 
+        informacion = Informacion.getInstance();
+
+        //recuperacion de botones
         B_email =  view.findViewById(R.id.B_email);
         B_gps = view.findViewById(R.id.B_gps);
         B_more = view.findViewById(R.id.B_pdf);
@@ -50,21 +56,20 @@ public class info extends Fragment implements View.OnClickListener {
         Intent intent = new Intent();
 
         switch (v.getId()){
+            // recuperamos el email del singleton y enviamos a una app compatible
             case R.id.B_email:
 
                 intent = new Intent(Intent.ACTION_SEND);
 
                 intent.setType("text/html");
-                intent.putExtra(Intent.EXTRA_EMAIL, "cosa@gmail.com");
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
-                intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
+                intent.putExtra(Intent.EXTRA_EMAIL, informacion.getEmail());
+                //no envia el valor del email :s
 
-                startActivity(intent);
                 break;
             case R.id.B_gps:
 
                 // Create a Uri from an intent string. Use the result to create an Intent.
-                Uri gmmIntentUri = Uri.parse("google.streetview:cbll=46.414382,10.013988");
+                Uri gmmIntentUri = Uri.parse("google.streetview:cbll="+ informacion.getCoordenadas());
 
                 // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
                 intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
@@ -72,32 +77,24 @@ public class info extends Fragment implements View.OnClickListener {
                 // Make the Intent explicit by setting the Google Maps package
                 intent.setPackage("com.google.android.apps.maps");
 
-                // Attempt to start an activity that can handle the Intent
-                startActivity(intent);
-
                 Toast.makeText(getActivity(), "seleccionado gps", Toast.LENGTH_LONG).show();
                 break;
             case R.id.B_pdf:
-
+                //transation to MoreInfo fragment
                 FragmentTransaction t = this.getFragmentManager().beginTransaction();
                 Fragment mFrag = new MoreInfo();
                 t.replace(R.id.viewpager, mFrag);
                 t.commit();
-                /*intent = new Intent(getActivity(),MoreInfo.class);
-                Toast.makeText(getActivity(), "seleccionado pdf", Toast.LENGTH_LONG).show();
-                startActivity(intent);*/
                 break;
             case R.id.B_tel:
                 intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + 123456789));
-                Toast.makeText(getActivity(), "marcando teléfono", Toast.LENGTH_LONG).show();
-                startActivity(intent);
-                break;
+            intent.setData(Uri.parse("tel:" + informacion.getTelefono()));
+            Toast.makeText(getActivity(), "marcando teléfono", Toast.LENGTH_LONG).show();
+            break;
         }
-        /*if (intent.resolveActivity(getPackageManager()) != null) {
+        if (intent.getAction() != null) {
             startActivity(intent);
-
-        }*/
+        }
 
     }
 
