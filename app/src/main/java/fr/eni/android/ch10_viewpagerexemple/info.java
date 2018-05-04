@@ -62,14 +62,14 @@ public class info extends Fragment implements View.OnClickListener {
                 intent = new Intent(Intent.ACTION_SEND);
 
                 intent.setType("text/html");
-                intent.putExtra(Intent.EXTRA_EMAIL, informacion.getEmail());
+                intent.putExtra(Intent.EXTRA_EMAIL, this.getResources().getString(R.string.email));
                 //no envia el valor del email :s
 
                 break;
             case R.id.B_gps:
 
                 // Create a Uri from an intent string. Use the result to create an Intent.
-                Uri gmmIntentUri = Uri.parse("google.streetview:cbll="+ informacion.getCoordenadas());
+                Uri gmmIntentUri = Uri.parse("google.streetview:cbll="+ this.getResources().getString(R.string.coordenadas));
 
                 // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
                 intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
@@ -88,7 +88,7 @@ public class info extends Fragment implements View.OnClickListener {
                 break;
             case R.id.B_tel:
                 intent = new Intent(Intent.ACTION_DIAL);
-            intent.setData(Uri.parse("tel:" + informacion.getTelefono()));
+            intent.setData(Uri.parse("tel:" + this.getResources().getString(R.string.telefono)));
             Toast.makeText(getActivity(), "marcando teléfono", Toast.LENGTH_LONG).show();
             break;
         }
