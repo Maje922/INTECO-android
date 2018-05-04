@@ -10,6 +10,6 @@
     <string name="todo">TODO</string>
     <string name= "email"> ejemplo@gmail.com</string>
     <string name = "telefono">123456789</string>
-    <string name = "coordenadas">46.414382,10.013988</string>;
+    <string name = "coordenadas">37.622393,-0.965531</string>;
 
 </resources>

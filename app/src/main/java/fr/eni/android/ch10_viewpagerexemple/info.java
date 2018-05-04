@@ -23,8 +23,7 @@ public class info extends Fragment implements View.OnClickListener {
     private ImageButton B_gps;
     private ImageButton B_more;
 
-    //singleton con la informacion de la empresa almacenada
-    private Informacion informacion;
+
 
     public info() {
         // Required empty public constructor
@@ -37,7 +36,6 @@ public class info extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_info, container, false);
 
-        informacion = Informacion.getInstance();
 
         //recuperacion de botones
         B_email =  view.findViewById(R.id.B_email);
@@ -69,7 +67,7 @@ public class info extends Fragment implements View.OnClickListener {
             case R.id.B_gps:
 
                 // Create a Uri from an intent string. Use the result to create an Intent.
-                Uri gmmIntentUri = Uri.parse("google.streetview:cbll="+ this.getResources().getString(R.string.coordenadas));
+                Uri gmmIntentUri = Uri.parse("google.navigation:q="+ this.getResources().getString(R.string.coordenadas));
 
                 // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
                 intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
