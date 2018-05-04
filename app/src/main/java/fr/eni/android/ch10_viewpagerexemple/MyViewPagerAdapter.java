@@ -4,22 +4,25 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-/**
- * Created by nazim on 25/11/14.
- */
+
 public class MyViewPagerAdapter extends FragmentPagerAdapter {
 
     private String[] tab;
+    private Fragment[] arrayFragment;
 
     public MyViewPagerAdapter(FragmentManager fm) {
         super(fm);
         tab = new String[]
                 {"posición 1", "posición 2", "posición 3"};
+        arrayFragment=new Fragment[3];
+        arrayFragment[0] = MyFragment.newInstance(tab[0]);
+        arrayFragment[1] = MyFragment.newInstance(tab[1]);
+        arrayFragment[2] = new ReadPDF();
     }
 
     @Override
     public Fragment getItem(final int pos) {
-        return MyFragment.newInstance(tab[pos]);
+        return arrayFragment[pos];
     }
 
     @Override
