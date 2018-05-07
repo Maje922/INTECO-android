@@ -18,11 +18,6 @@ import android.widget.Toast;
  * A simple {@link Fragment} subclass.
  */
 public class info extends Fragment implements View.OnClickListener {
-    private ImageButton B_tel;
-    private ImageButton B_email;
-    private ImageButton B_gps;
-    private ImageButton B_more;
-
 
 
     public info() {
@@ -36,20 +31,17 @@ public class info extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_info, container, false);
 
-
         //recuperacion de botones
-        B_email =  view.findViewById(R.id.B_email);
-        B_gps = view.findViewById(R.id.B_gps);
-        B_more = view.findViewById(R.id.B_pdf);
-        B_tel = view.findViewById(R.id.B_tel);
 
-        B_tel.setOnClickListener(this);
-        B_gps.setOnClickListener(this);
-        B_email.setOnClickListener(this);
-        B_more.setOnClickListener(this);
+         view.findViewById(R.id.B_email).setOnClickListener(this);
+         view.findViewById(R.id.B_gps).setOnClickListener(this);
+         view.findViewById(R.id.B_pdf).setOnClickListener(this);
+         view.findViewById(R.id.B_tel).setOnClickListener(this);
 
         return view;
     }
+
+
     public void onClick(View v) {
         Intent intent = new Intent();
 
@@ -80,18 +72,26 @@ public class info extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.B_pdf:
+
+                Fragment fragment = MyFragment.newInstance("pdf");
+
+
                 //transation to MoreInfo fragment
-                FragmentTransaction t = this.getFragmentManager().beginTransaction();
-                Fragment mFrag = new MoreInfo();
-                t.replace(R.id.viewpager, mFrag);
+                FragmentTransaction t = getFragmentManager().beginTransaction();
+
+                t.replace(R.id.viewpager, fragment);
+
+                t.addToBackStack(null);
                 t.commit();
                 break;
+
             case R.id.B_tel:
                 intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:" + this.getResources().getString(R.string.telefono)));
             Toast.makeText(getActivity(), "marcando teléfono", Toast.LENGTH_LONG).show();
             break;
         }
+        //se comprueba que existe el intent para evitar un error
         if (intent.getAction() != null) {
             startActivity(intent);
         }
