@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.FieldPosition;
@@ -24,6 +25,8 @@ public class ViewPagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_pager);
 
+        String encript = Hash.md5("contraseña");
+        Toast.makeText(this,encript,Toast.LENGTH_LONG).show();
 
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mAdapter = new MyViewPagerAdapter(
@@ -71,4 +74,5 @@ public class ViewPagerActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -123,15 +123,17 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
 
         return labels;
     }
+
     private void Xaxis(XAxis xAxis){
         xAxis.setGranularityEnabled(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setGranularity(1f);
+        xAxis.setAxisMinimum(0.45f);
 
     }
     private void YaxisLeft(YAxis yAxis){
         // yAxis.setSpaceBottom(0);
-        // yAxis.setSpaceTop(20);
+        yAxis.setSpaceTop(20);
         yAxis.setGranularityEnabled(true);
         yAxis.setGranularity(5f);
         yAxis.setAxisMinimum(0);
