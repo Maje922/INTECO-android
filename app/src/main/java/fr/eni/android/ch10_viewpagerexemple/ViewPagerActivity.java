@@ -61,7 +61,15 @@ public class ViewPagerActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        switch (id){
+            case R.id.action_logout:
+                return true;
+
+            case R.id.action_exit:
+                finish();
+        }
+
+        if (id == R.id.action_logout) {
             return true;
         }
 
