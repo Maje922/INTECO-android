@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.CombinedChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -15,6 +16,7 @@ import com.github.mikephil.charting.data.CombinedData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.io.BufferedReader;
@@ -24,7 +26,9 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Usuario on 04/05/2018.
@@ -34,10 +38,12 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
 
     private CombinedChart combinedChart;
     private ArrayList<BarEntry> entradas;
+    private String fecha;
 
 
-    public ComunationTask(View view) {
+    public ComunationTask(View view,String f) {
         this.combinedChart = (CombinedChart) view;
+        this.fecha = f;
     }
 
     @Override
@@ -70,19 +76,27 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
 
-        entradas = new ArrayList<>();
-        String[] array = result.split(";");
+        if(result.charAt(0) != '<') {
+            entradas = new ArrayList<>();
+            String[] array = result.split(";");
 
 
+            for (int x = 6; x <= array.length; x += 6) {
+                BarEntry entrada = new BarEntry(Float.parseFloat(array[x - 3]), Float.parseFloat(array[x - 2]));
+                entradas.add(entrada);
+            }
+            CrearGrafica();
+        }else {
+            Date date = new Date();
+            String fecha = new SimpleDateFormat("yyyyMMdd").format(date);
+            String fechaformat = new SimpleDateFormat("yyyy/MM/dd").format(date);
+            date.toString();
+            ComunationTask ct = new ComunationTask(combinedChart,fechaformat);
+            String Url = "http://www.omie.es/datosPub/marginalpdbc/marginalpdbc_";
+            Url = Url + fecha + ".1";
 
-        for (int x = 6; x <= array.length;x+=6) {
-            BarEntry entrada = new BarEntry(Float.parseFloat(array[x-3]), Float.parseFloat(array[x-2]));
-            entradas.add(entrada);
+            ct.execute(Url);
         }
-
-
-        CrearGrafica();
-
 
 
     }
@@ -94,7 +108,9 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
         combinedChart.setData(data);
         combinedChart.animateY(3000, Easing.EasingOption.EaseInOutExpo);
         combinedChart.getLegend().setEnabled(false);
-        combinedChart.getDescription().setEnabled(false);
+        combinedChart.getDescription().setEnabled(true);
+        combinedChart.getDescription().setText(fecha);
+        combinedChart.getDescription().setTextSize(15f);
         Xaxis(combinedChart.getXAxis());
         YaxisLeft(combinedChart.getAxisLeft());
         YaxisRight(combinedChart.getAxisRight());
@@ -110,8 +126,8 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
     private void Xaxis(XAxis xAxis){
         xAxis.setGranularityEnabled(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setGranularity(1);
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(getXAxisValues()));
+        xAxis.setGranularity(1f);
+
     }
     private void YaxisLeft(YAxis yAxis){
         // yAxis.setSpaceBottom(0);
@@ -119,6 +135,7 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
         yAxis.setGranularityEnabled(true);
         yAxis.setGranularity(5f);
         yAxis.setAxisMinimum(0);
+
 
     }
     private void YaxisRight(YAxis yAxis){

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.CombinedChart;
 
@@ -36,14 +37,20 @@ public class chart extends Fragment {
         View view = inflater.inflate(R.layout.fragment_chart, container, false);
         combinedChart = view.findViewById(R.id.combinedChart);
 
+
         // Crea el objeto Date
         Date date = new Date();
-        String fecha_formateada = new SimpleDateFormat("yyyyMMdd").format(date);
 
-
-        com = new ComunationTask(combinedChart);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(calendar.DAY_OF_YEAR,1);
+        date = calendar.getTime();
+        String fecha = new SimpleDateFormat("yyyyMMdd").format(date);
+        String fechaformat = new SimpleDateFormat("yyyy/MM/dd").format(date);
+        TextView tv = view.findViewById(R.id.textView);
+        com = new ComunationTask(combinedChart,fechaformat);
         String Url = "http://www.omie.es/datosPub/marginalpdbc/marginalpdbc_";
-        Url = Url + fecha_formateada + ".1";
+        Url = Url + fecha + ".1";
 
         com.execute(Url);
         return view;
