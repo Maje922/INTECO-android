@@ -30,6 +30,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import fr.eni.android.ch10_viewpagerexemple.CustomValueFormatter;
+
 /**
  * Created by Usuario on 04/05/2018.
  */
@@ -137,6 +139,7 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
         yAxis.setGranularityEnabled(true);
         yAxis.setGranularity(5f);
         yAxis.setAxisMinimum(0);
+        yAxis.setValueFormatter(new CustomValueFormatter());
 
 
     }
