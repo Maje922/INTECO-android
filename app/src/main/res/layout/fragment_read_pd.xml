@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/readPDF"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bombilla"
     tools:context=".ReadPDF">
 
     <com.github.barteksc.pdfviewer.PDFView
@@ -16,6 +16,7 @@
         android:layout_alignParentTop="true"
         android:background="@android:color/background_light"
         android:gravity="left"
+        app:elevation="50dp"
         tools:ignore="RtlHardcoded">
 
         <android.support.design.widget.FloatingActionButton
@@ -27,35 +28,21 @@
             android:layout_marginBottom="16dp"
             android:clickable="true"
             android:src="@android:drawable/ic_menu_revert"
-            app:backgroundTint="#3062b8" />
-
+            app:backgroundTint="#3062b8"
+            app:elevation="24dp" />
     </com.github.barteksc.pdfviewer.PDFView>
 
 
     <Button
-        android:id="@+id/button2"
-        style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:background="@color/Inteco"
-        android:gravity="center"
-        android:text="Tarifa Acceso 3.1A "
-        android:textColor="@android:color/white"
-        android:textSize="12sp" />
-
-    <Button
         android:id="@+id/button"
         style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
-        android:layout_width="200dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/button2"
         android:layout_marginTop="56dp"
-        android:background="@color/Inteco"
-        android:drawableBottom="@android:color/holo_blue_bright"
+        android:background="@drawable/botoness"
+        android:elevation="24dp"
         android:gravity="center"
         android:text="Potencias Normalizadas"
         android:textColor="@android:color/white"
@@ -64,61 +51,96 @@
         tools:autoText="true" />
 
     <Button
+        android:id="@+id/button2"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/botoness"
+        android:elevation="24dp"
+        android:gravity="center"
+        android:text="Tarifa Acceso 3.1A "
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <Button
         android:id="@+id/button3"
         style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
-        android:layout_width="200dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/button2"
         android:layout_below="@+id/button2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        android:background="@color/Inteco"
+        android:background="@drawable/botoness"
+        android:elevation="24dp"
         android:gravity="center"
         android:text="TARIFA ACCESO 6.1"
         android:textColor="@android:color/white"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button4"
         style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
-        android:layout_width="200dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button5"
         android:layout_alignStart="@+id/button5"
         android:layout_marginBottom="19dp"
-        android:background="@color/Inteco"
+        android:background="@drawable/botoness"
+        android:elevation="24dp"
         android:gravity="center"
         android:text="TARIFA ACCESO 3.0A"
         android:textColor="@android:color/white"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button5"
         style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
-        android:layout_width="200dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button6"
         android:layout_alignStart="@+id/button3"
         android:layout_marginBottom="20dp"
-        android:background="@color/Inteco"
+        android:background="@drawable/botoness"
+        android:elevation="7dp"
         android:gravity="center"
+        android:radius="40dp"
         android:text="Curva ICP"
         android:textColor="@android:color/white"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button6"
         style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
-        android:layout_width="200dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/button5"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="63dp"
-        android:background="@color/Inteco"
+        android:background="@drawable/botoness"
+        android:elevation="24dp"
         android:gravity="center"
         android:text="TARIFA DHs"
         android:textColor="@android:color/white"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/capaDeFondo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.4"
+        android:background="@drawable/bombilla"
+        android:elevation="0dp">
+
+    </RelativeLayout>
 
 
 </RelativeLayout>
