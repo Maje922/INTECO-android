@@ -12,19 +12,27 @@ import com.example.eljoprifti.EljoPriftiEditText;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextView tvLogin;
+    private TextView tvError;
     private CardView cardView;
+    private EditText etPass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        etPass = findViewById(R.id.etPass);
+        tvError = findViewById(R.id.tvError);
         cardView = findViewById(R.id.cardView);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,ViewPagerActivity.class);
-                startActivity(intent);
+                String encript = Hash.md5(etPass.getText().toString());
+                if (encript.equals(Hash.md5("contraseña"))) {
+                    Intent intent = new Intent(LoginActivity.this,ViewPagerActivity.class);
+                    startActivity(intent);
+                } else {
+                    tvError.setText("Password incorrecto");
+                }
             }
         });
 

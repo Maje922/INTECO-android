@@ -6,18 +6,14 @@ import android.view.View;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.CombinedChart;
-import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.CombinedData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -38,13 +34,13 @@ import fr.eni.android.ch10_viewpagerexemple.CustomValueFormatter;
 
 public class ComunationTask extends AsyncTask<String, Void, String> {
 
-    private CombinedChart combinedChart;
+    private LineChart lineChart;
     private ArrayList<BarEntry> entradas;
     private String fecha;
 
 
     public ComunationTask(View view,String f) {
-        this.combinedChart = (CombinedChart) view;
+        this.lineChart = (LineChart) view;
         this.fecha = f;
     }
 
@@ -93,7 +89,7 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
             String fecha = new SimpleDateFormat("yyyyMMdd").format(date);
             String fechaformat = new SimpleDateFormat("yyyy/MM/dd").format(date);
             date.toString();
-            ComunationTask ct = new ComunationTask(combinedChart,fechaformat);
+            ComunationTask ct = new ComunationTask(lineChart,fechaformat);
             String Url = "http://www.omie.es/datosPub/marginalpdbc/marginalpdbc_";
             Url = Url + fecha + ".1";
 
@@ -103,27 +99,16 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
 
     }
     private void CrearGrafica(){
-        CombinedData data = new CombinedData();
-        //no añado el dataset de la grafica de barras
-        //data.setData(barData());
-        data.setData(lineData());
-        combinedChart.setData(data);
-        combinedChart.animateY(3000, Easing.EasingOption.EaseInOutExpo);
-        combinedChart.getLegend().setEnabled(false);
-        combinedChart.getDescription().setEnabled(true);
-        combinedChart.getDescription().setText(fecha);
-        combinedChart.getDescription().setTextSize(15f);
-        Xaxis(combinedChart.getXAxis());
-        YaxisLeft(combinedChart.getAxisLeft());
-        YaxisRight(combinedChart.getAxisRight());
-    }
-    private String[] getXAxisValues(){
-        String[] labels = new String[24];
-        for (int i = 0;i<24;i++){
-            labels[i] = String.valueOf(i+1);
-        }
 
-        return labels;
+        lineChart.setData(lineData());
+        lineChart.animateY(3000, Easing.EasingOption.EaseInOutExpo);
+        lineChart.getLegend().setEnabled(false);
+        lineChart.getDescription().setEnabled(true);
+        lineChart.getDescription().setText(fecha);
+        lineChart.getDescription().setTextSize(15f);
+        Xaxis(lineChart.getXAxis());
+        YaxisLeft(lineChart.getAxisLeft());
+        YaxisRight(lineChart.getAxisRight());
     }
 
     private void Xaxis(XAxis xAxis){
@@ -138,7 +123,7 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
         yAxis.setSpaceTop(20);
         yAxis.setGranularityEnabled(true);
         yAxis.setGranularity(5f);
-        yAxis.setAxisMinimum(0);
+        yAxis.setAxisMinimum(25);
         yAxis.setValueFormatter(new CustomValueFormatter());
 
 
@@ -146,6 +131,8 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
     private void YaxisRight(YAxis yAxis){
         yAxis.setEnabled(false);
     }
+
+
     private LineData lineData(){
         ArrayList<Entry> line = new ArrayList<>();
         line.addAll(entradas);
@@ -160,6 +147,7 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
         return lineData;
 
     }
+    /* datos de barras
     private BarData barData(){
         ArrayList<BarEntry> group1 = new ArrayList<>();
         group1.addAll(entradas);
@@ -176,4 +164,5 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
 
         return barData;
     }
+    */
 }

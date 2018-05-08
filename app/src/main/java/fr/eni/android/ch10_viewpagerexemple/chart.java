@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.CombinedChart;
+import com.github.mikephil.charting.charts.LineChart;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,7 +23,7 @@ import fr.eni.android.ch10_viewpagerexemple.conexion.ComunationTask;
  */
 public class chart extends Fragment {
 
-    private CombinedChart combinedChart;
+    private LineChart lineChart;
     private ComunationTask com;
 
     public chart() {
@@ -35,7 +36,7 @@ public class chart extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_chart, container, false);
-        combinedChart = view.findViewById(R.id.combinedChart);
+        lineChart = view.findViewById(R.id.combinedChart);
 
 
         // Crea el objeto Date
@@ -48,7 +49,7 @@ public class chart extends Fragment {
         String fecha = new SimpleDateFormat("yyyyMMdd").format(date);
         String fechaformat = new SimpleDateFormat("yyyy/MM/dd").format(date);
         TextView tv = view.findViewById(R.id.textView);
-        com = new ComunationTask(combinedChart,fechaformat);
+        com = new ComunationTask(lineChart,fechaformat);
         String Url = "http://www.omie.es/datosPub/marginalpdbc/marginalpdbc_";
         Url = Url + fecha + ".1";
 
