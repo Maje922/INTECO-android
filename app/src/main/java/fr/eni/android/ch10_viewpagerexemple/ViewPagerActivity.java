@@ -32,11 +32,12 @@ public class ViewPagerActivity extends AppCompatActivity {
         mAdapter = new MyViewPagerAdapter(
                 getSupportFragmentManager());
 
-   /*     mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+       mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position,
                                        float positionOffset,
                                        int positionOffsetPixels) {
+
 
             }
 
@@ -49,7 +50,7 @@ public class ViewPagerActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {
 
             }
-        });*/
+        });
 
         mViewPager.setAdapter(mAdapter);
 
@@ -68,7 +69,15 @@ public class ViewPagerActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        switch (id){
+            case R.id.action_logout:
+                return true;
+
+            case R.id.action_exit:
+                finish();
+        }
+
+        if (id == R.id.action_logout) {
             return true;
         }
 

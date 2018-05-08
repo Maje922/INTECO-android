@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Ch10_ViewPagerExample</string>
+    <string name="app_name">INTECO</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_logout">Cerrar sesión</string>
+    <string name="action_exit">Salir</string>
+
+
+    <!-- datos sobre empresa -->
+    <string name="todo">TODO</string>
+    <string name="email">inteco@gmail.com</string>
+    <string name="telefono">968508312</string>
+    <string name="coordenadas">37.622393,-0.965531</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
