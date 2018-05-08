@@ -9,8 +9,11 @@
 
     <!-- datos sobre empresa -->
     <string name="todo">TODO</string>
-    <string name= "email">inteco@gmail.com</string>
-    <string name = "telefono">968508312</string>
-    <string name = "coordenadas">37.622393,-0.965531</string>;
+    <string name="email">inteco@gmail.com</string>
+    <string name="telefono">968508312</string>
+    <string name="coordenadas">37.622393,-0.965531</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>;
 
 </resources>

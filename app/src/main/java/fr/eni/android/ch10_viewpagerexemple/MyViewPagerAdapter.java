@@ -20,7 +20,8 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
 
         fragments = new Fragment[3];
         fragments[0] = MyFragment.newInstance(tab[0]);
-        fragments[1] = MyFragment.newInstance(tab[1]);
+        fragments[1] = new Search();
+        //fragments[1] = MyFragment.newInstance(tab[1]);
         fragments[2] = new info();
     }
 
