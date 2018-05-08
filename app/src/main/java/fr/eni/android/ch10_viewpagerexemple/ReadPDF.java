@@ -1,67 +1,117 @@
 package fr.eni.android.ch10_viewpagerexemple;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.annotation.RequiresPermission;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
+
+import com.github.barteksc.pdfviewer.PDFView;
 
 import java.io.File;
-import java.util.ArrayList;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
-public class ReadPDF extends Fragment {
+public class ReadPDF extends Fragment implements View.OnClickListener {
 
-    ListView listView;
-    String[] elementos = {"elemento1", "elemento2", "elemento3"};
+    private Button[] botones = new Button[6];
+    private View view;
+    private PDFView pdfView;
+    private String nombreFile = "";
+    private FloatingActionButton buttonAtras;
 
     public ReadPDF() {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_read_pd, container, false);
-        listView = (ListView) view.findViewById(R.id.lista);
+        view = inflater.inflate(R.layout.fragment_read_pd, container, false);
 
-        ArrayList<String> lista = new ArrayList<>();
-            lista.add("PDF1");
-            lista.add("PDF2");
-            lista.add("PDF3");
+        //Se crea un array de botones que abrirán los PDF
+        botones[0] = view.findViewById(R.id.button);
+        botones[1] = view.findViewById(R.id.button2);
+        botones[2] = view.findViewById(R.id.button3);
+        botones[3] = view.findViewById(R.id.button4);
+        botones[4] = view.findViewById(R.id.button5);
+        botones[5] = view.findViewById(R.id.button6);
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_list_item_1, elementos);
+        buttonAtras = view.findViewById(R.id.floatingActionButton);
+        buttonAtras.setOnClickListener(this);
+        pdfView = view.findViewById(R.id.pdfView);
 
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent();
-                intent.setDataAndType(Uri.parse("http://nimoz.pl/files/publications/2/loremipsum.pdf"), "application/pdf");
-                startActivity(intent);
-
-            }
-        });
+        //se recorre el array, siendo los botones visibles y los PDF(junto al ActionButton) invisibles
+        for (int i = 0; i < botones.length;i++) {
+            botones[i].setOnClickListener(this);
+            botones[i].setVisibility(VISIBLE);
+        }
+        pdfView.setVisibility(INVISIBLE);
 
         return view;
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button:
+                nombreFile = "PotenciasNormalizadas.pdf";
+                cargarPDF();
+                break;
+            case R.id.button2:
+                nombreFile = "Calendario.pdf";
+                cargarPDF();
+                break;
+            case R.id.button3:
+                nombreFile = "Calendario2.pdf";
+                cargarPDF();
+                break;
+            case R.id.button4:
+                nombreFile = "Calendario3.pdf";
+                cargarPDF();
+                break;
+            case R.id.button5:
+                nombreFile = "CURVAICP.pdf";
+                cargarPDF();
+                break;
+            case R.id.button6:
+                nombreFile = "DhsTarifas.pdf";
+                cargarPDF();
+                break;
+            case R.id.floatingActionButton:
+                pushButton();
+                break;
+        }
+    }
+
+    //método para leer los pdf desde Asset.folder y ocultar botones
+    public void cargarPDF() {
+        pdfView = view.findViewById(R.id.pdfView);
+        pdfView.fromAsset(nombreFile).load();
+        for (int i = 0; i < botones.length; i++) {
+            botones[i].setVisibility(INVISIBLE);
+        }
+
+        pdfView.setVisibility(VISIBLE);
+    }
+
+    public void pushButton() {
+        for (int i = 0; i < botones.length; i++) {
+            botones[i].setVisibility(VISIBLE);
+        }
+        pdfView.setVisibility(View.INVISIBLE);
+
+        //pdfView.setVisibility(pdfView.getVisibility()==View.INVISIBLE?View.INVISIBLE:View.VISIBLE);
+
+    }
 }
-
-
-
-
-
 

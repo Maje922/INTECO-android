@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class MyViewPagerAdapter extends FragmentPagerAdapter {
 
     private String[] tab;
-    private Fragment[] arrayFragment;
+    public static Fragment[] arrayFragment;
 
     public MyViewPagerAdapter(FragmentManager fm) {
         super(fm);
