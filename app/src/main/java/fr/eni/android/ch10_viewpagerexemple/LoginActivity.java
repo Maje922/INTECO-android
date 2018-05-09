@@ -27,7 +27,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String encript = Hash.md5(etPass.getText().toString());
-                if (encript.equals(Hash.md5("contraseña"))) {
+                //hola
+
+                if (encript.equals(getResources().getString(R.string.hash))) {
                     Intent intent = new Intent(LoginActivity.this,ViewPagerActivity.class);
                     startActivity(intent);
                 } else {

@@ -25,9 +25,6 @@ public class ViewPagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_pager);
 
-        String encript = Hash.md5("contraseña");
-        Toast.makeText(this,encript,Toast.LENGTH_LONG).show();
-
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mAdapter = new MyViewPagerAdapter(
                 getSupportFragmentManager());
@@ -37,7 +34,6 @@ public class ViewPagerActivity extends AppCompatActivity {
             public void onPageScrolled(int position,
                                        float positionOffset,
                                        int positionOffsetPixels) {
-
 
             }
 

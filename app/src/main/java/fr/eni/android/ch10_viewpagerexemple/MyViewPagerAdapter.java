@@ -14,11 +14,11 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
     public MyViewPagerAdapter(FragmentManager fm) {
         super(fm);
         tab = new String[]
-                {"posición 1", "posición 2", "posición 3"};
+                {"Últimos datos", "Buscar por fecha", "Información y contacto"};
 
         fragments[0] = new chart();
-        fragments[1] = MyFragment.newInstance(tab[1]);
-        fragments[2] = MyFragment.newInstance(tab[2]);
+        fragments[1] = new Search();
+        fragments[2] = new info();
     }
 
     @Override

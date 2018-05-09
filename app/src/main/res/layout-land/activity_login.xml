@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@drawable/bombillab"
     tools:context=".LoginActivity">
 
 
@@ -37,7 +37,7 @@
         android:layout_alignStart="@+id/etPass"
         android:layout_below="@+id/etPass"
         android:layout_marginTop="57dp"
-        app:cardBackgroundColor="@color/cardview_dark_background"
+        app:cardBackgroundColor="@color/AzulOscuro"
         app:cardCornerRadius="25dp">
 
         <RelativeLayout

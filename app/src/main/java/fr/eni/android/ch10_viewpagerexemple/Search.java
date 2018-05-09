@@ -10,16 +10,18 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Search extends Fragment {
+public class Search extends Fragment implements View.OnClickListener{
     private Fragment fragment;
 
     private Fragment[] fragments;
+    private Button dia, mes;
 
     public Search() {
         // Required empty public constructor
@@ -32,10 +34,13 @@ public class Search extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        FragmentManager fm = getFragmentManager();
+        view.findViewById(R.id.Bdia).setOnClickListener(this);
+        view.findViewById(R.id.Bmes).setOnClickListener(this);
+
+       setFragment(MyFragment.newInstance("dia"));
         //fragment = fm.findFragmentById(R.id.cosa);
 
-        fm.beginTransaction().add(R.id.cosa,MyFragment.newInstance("cosa")).commit();
+
         /*fragments = new Fragment[2];
         fragments[0] = MyFragment.newInstance("dia");
         fragments[1] = MyFragment.newInstance("mes");
@@ -48,6 +53,24 @@ public class Search extends Fragment {
 
 
         return view;
+    }
+
+    private void setFragment(Fragment fr){
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction().add(R.id.cosa,fr).commit();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.Bdia:
+                setFragment(MyFragment.newInstance("dia"));
+                break;
+            case R.id.Bmes:
+                setFragment(new chart());
+                break;
+        }
+
     }
 
    /* public void replaceFragment(Fragment someFragment) {
