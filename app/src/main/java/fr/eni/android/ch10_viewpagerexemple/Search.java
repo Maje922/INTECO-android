@@ -57,11 +57,12 @@ public class Search extends Fragment implements View.OnClickListener{
 
     private void setFragment(Fragment fr){
         FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().add(R.id.cosa,fr).commit();
+        fm.beginTransaction().replace(R.id.cosa,fr).commit();
     }
 
     @Override
     public void onClick(View v) {
+
         switch (v.getId()){
             case R.id.Bdia:
                 setFragment(MyFragment.newInstance("dia"));
