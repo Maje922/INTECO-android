@@ -52,7 +52,11 @@ public class ViewPagerActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         //indica a tablayout cuál es el viewpager a escuchar
-        tabLayout.setupWithViewPager(mViewPager);
+        try {
+            tabLayout.setupWithViewPager(mViewPager);
+        }catch (Exception e) {
+            e.getMessage();
+        }
     }
 
     @Override

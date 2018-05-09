@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="pdfLoremIpsum" type="id" />
+    <item name="buttonAtras" type="id" />
+    <item name="fragment" type="id" />
+    <item name="fragment_read_pd" type="id" />
+</resources>
