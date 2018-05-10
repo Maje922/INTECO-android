@@ -11,6 +11,6 @@ public class CustomValueFormatter implements IAxisValueFormatter {
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-        return String.valueOf(value) + "M";
+        return String.valueOf(value) + "€/M";
     }
 }

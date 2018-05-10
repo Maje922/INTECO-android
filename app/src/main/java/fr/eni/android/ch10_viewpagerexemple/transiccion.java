@@ -11,7 +11,8 @@ import android.widget.FrameLayout;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * este fragment solo es para moverse entre los fragments info, readPDF y readingPDF
+ * utilizaremos el frameLayout para intercambiar los diferentes fragments
  */
 public class transiccion extends Fragment {
 
@@ -26,6 +27,8 @@ public class transiccion extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_transiccion, container, false);
+
+
 
         FragmentManager fm = getFragmentManager();
         fm.beginTransaction().replace(R.id.frag,new info()).commit();

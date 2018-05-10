@@ -17,7 +17,7 @@ import java.util.Date;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * en este fragment se selecciona un dia para que muestre la grafica de ese día
  */
 public class dia extends Fragment implements View.OnClickListener{
 
@@ -90,7 +90,7 @@ public class dia extends Fragment implements View.OnClickListener{
         * */
         Long fechaL = fecha.getDate();
         Date date = new Date(fechaL);
-        Date d = new Date(1220227200);
+       // Date d = new Date(1220227200);
 
 
         Toast.makeText(getActivity(),String.valueOf(date),Toast.LENGTH_LONG).show();
