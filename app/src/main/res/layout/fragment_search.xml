@@ -5,16 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".Search">
+    tools:context=".Search"
+    tools:layout_editor_absoluteY="81dp">
 
 
         <FrameLayout
             android:id="@+id/cosa"
-            android:layout_width="0dp"
+            android:layout_width="384dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/Bmes"
+            app:layout_constraintEnd_toEndOf="@+id/Bdia"
+            app:layout_constraintStart_toEndOf="@+id/Bdia"
             app:layout_constraintTop_toTopOf="parent">
 
         </FrameLayout>
@@ -33,8 +34,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Button"
-            app:layout_constraintBottom_toBottomOf="@+id/cosa"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/Bdia" />
+            app:layout_constraintStart_toEndOf="@+id/Bdia"
+            app:layout_constraintTop_toBottomOf="@+id/cosa" />
 
 </android.support.constraint.ConstraintLayout>

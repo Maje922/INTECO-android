@@ -15,7 +15,7 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter{
 
         fragments[0] = new chart();
         fragments[1] = new Search();
-        fragments[2] = new info();
+        fragments[2] = new transiccion();
     }
 
     @Override

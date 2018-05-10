@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,16 +75,12 @@ public class info extends Fragment implements View.OnClickListener {
                 break;
             case R.id.B_pdf:
 
-                Fragment fragment = MyFragment.newInstance("pdf");
+                /*FragmentManager fm = getFragmentManager();
+                fm.beginTransaction().replace(R.id.frag,new ReadPDF()).commit();
+                Fragment pdf = new ReadPDF();*/
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction().replace(R.id.frag,new ReadPDF()).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
 
-
-                //transation to MoreInfo fragment
-                FragmentTransaction t = getFragmentManager().beginTransaction();
-
-                t.replace(R.id.viewpager, fragment);
-
-                t.addToBackStack(null);
-                t.commit();
                 break;
 
             case R.id.B_tel:

@@ -1,38 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/readPDF"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     tools:context=".ReadPDF">
 
-    <com.github.barteksc.pdfviewer.PDFView
-        android:id="@+id/pdfView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@android:color/white"
-        android:gravity="left"
-        app:elevation="50dp"
-        tools:ignore="RtlHardcoded">
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="16dp"
-            android:clickable="true"
-            android:background="@drawable/buttonlist"
-            android:src="@android:drawable/ic_menu_revert"
-            app:backgroundTint="#3062b8"
-            app:elevation="24dp" />
-    </com.github.barteksc.pdfviewer.PDFView>
 
 
     <Button
@@ -43,9 +17,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/button2"
         android:layout_marginTop="56dp"
+        android:background="@drawable/buttonlist"
         android:elevation="24dp"
         android:gravity="center"
-        android:background="@drawable/buttonlist"
         android:text="Potencias Normalizadas"
         android:textColor="@android:color/white"
         android:textSize="12sp"
@@ -132,5 +106,18 @@
         android:textColor="@android:color/white"
         android:textSize="12sp"
         android:textStyle="bold" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/returnBB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="13dp"
+        android:background="@drawable/buttonlist"
+        android:clickable="true"
+        android:src="@android:drawable/ic_menu_revert"
+        app:backgroundTint="@color/azulInteco" />
 
 </RelativeLayout>

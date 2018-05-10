@@ -24,9 +24,9 @@ import static android.view.View.VISIBLE;
 public class ReadPDF extends Fragment implements View.OnClickListener {
 
     private Button[] botones = new Button[6];
-    private View view;
-    private PDFView pdfView;
-    private String nombreFile = "";
+    //private View view;
+    //private PDFView pdfView;
+    private String nombreFile;
     private FloatingActionButton buttonAtras;
 
     public ReadPDF() {
@@ -35,7 +35,7 @@ public class ReadPDF extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_read_pd, container, false);
+        View view = inflater.inflate(R.layout.fragment_read_pd, container, false);
 
         //Se crea un array de botones que abrirán los PDF
         botones[0] = view.findViewById(R.id.button);
@@ -45,16 +45,16 @@ public class ReadPDF extends Fragment implements View.OnClickListener {
         botones[4] = view.findViewById(R.id.button5);
         botones[5] = view.findViewById(R.id.button6);
 
-        buttonAtras = view.findViewById(R.id.floatingActionButton);
+        buttonAtras = view.findViewById(R.id.returnBB);
         buttonAtras.setOnClickListener(this);
-        pdfView = view.findViewById(R.id.pdfView);
+        //pdfView = view.findViewById(R.id.pdfView);
 
         //se recorre el array, siendo los botones visibles y los PDF(junto al ActionButton) invisibles
         for (int i = 0; i < botones.length;i++) {
             botones[i].setOnClickListener(this);
-            botones[i].setVisibility(VISIBLE);
+            //botones[i].setVisibility(VISIBLE);
         }
-        pdfView.setVisibility(INVISIBLE);
+        //pdfView.setVisibility(INVISIBLE);
 
         return view;
     }
@@ -87,24 +87,22 @@ public class ReadPDF extends Fragment implements View.OnClickListener {
                 nombreFile = "DHsTarifas.pdf";
                 cargarPDF();
                 break;
-            case R.id.floatingActionButton:
-                pushButton();
+            case R.id.returnBB:
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction().replace(R.id.frag,new info()).commit();
                 break;
         }
     }
 
     //método para leer los pdf desde Asset.folder y ocultar botones
     public void cargarPDF() {
-        pdfView = view.findViewById(R.id.pdfView);
-        pdfView.fromAsset(nombreFile).load();
-        for (int i = 0; i < botones.length; i++) {
-            botones[i].setVisibility(INVISIBLE);
-        }
 
-        pdfView.setVisibility(VISIBLE);
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction().replace(R.id.frag,readingPDF.newInstance(nombreFile)).commit();
+
     }
 
-    public void pushButton() {
+   /* public void pushButton() {
         for (int i = 0; i < botones.length; i++) {
             botones[i].setVisibility(VISIBLE);
         }
@@ -112,6 +110,6 @@ public class ReadPDF extends Fragment implements View.OnClickListener {
 
         //pdfView.setVisibility(pdfView.getVisibility()==View.INVISIBLE?View.INVISIBLE:View.VISIBLE);
 
-    }
+    }*/
 }
 

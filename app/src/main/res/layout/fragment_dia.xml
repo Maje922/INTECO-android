@@ -1,14 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dia">
+    tools:context=".dia"
+    tools:layout_editor_absoluteY="81dp">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Spinner
+        android:id="@+id/dia"
+        android:layout_width="58dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginStart="42dp"
+        app:layout_constraintBottom_toTopOf="@+id/calendarView"
+        app:layout_constraintEnd_toStartOf="@+id/mes"
+        app:layout_constraintStart_toStartOf="@+id/calendarView"
+        app:layout_constraintTop_toTopOf="@+id/mes"
+        tools:ignore="MissingConstraints" />
+
+    <Spinner
+        android:id="@+id/mes"
+        android:layout_width="92dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="7dp"
+        app:layout_constraintBottom_toTopOf="@+id/calendarView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mesText"
+        tools:ignore="MissingConstraints" />
+
+    <Spinner
+        android:id="@+id/año"
+        android:layout_width="53dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/mes"
+        app:layout_constraintEnd_toEndOf="@+id/calendarView"
+        app:layout_constraintTop_toTopOf="@+id/mes"
+        tools:ignore="MissingConstraints" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/diaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        android:layout_marginStart="18dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/dia"
+        app:layout_constraintStart_toStartOf="@+id/dia"
+        tools:ignore="MissingConstraints"
+        tools:text="@string/dia" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/mesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/mes"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:text="@string/mes" />
+
+    <TextView
+        android:id="@+id/añoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        android:layout_marginEnd="12dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/año"
+        app:layout_constraintEnd_toEndOf="@+id/año"
+        tools:ignore="MissingConstraints"
+        tools:text="@string/año" />
+
+    <Button
+        android:id="@+id/mostrarGrafica"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="3dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView"
+        tools:ignore="MissingConstraints"
+        tools:text="@string/boton" />
+</android.support.constraint.ConstraintLayout>

@@ -19,6 +19,8 @@ import android.widget.FrameLayout;
  */
 public class Search extends Fragment implements View.OnClickListener{
     private Fragment fragment;
+    private Fragment diaFrag;
+    private Fragment mesFrag;
 
     private Fragment[] fragments;
     private Button dia, mes;
@@ -34,10 +36,13 @@ public class Search extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
+        diaFrag = new dia();
+        mesFrag = new chart();
+
         view.findViewById(R.id.Bdia).setOnClickListener(this);
         view.findViewById(R.id.Bmes).setOnClickListener(this);
 
-       setFragment(MyFragment.newInstance("dia"));
+       setFragment(diaFrag);
         //fragment = fm.findFragmentById(R.id.cosa);
 
 
@@ -65,10 +70,10 @@ public class Search extends Fragment implements View.OnClickListener{
 
         switch (v.getId()){
             case R.id.Bdia:
-                setFragment(MyFragment.newInstance("dia"));
+                setFragment(diaFrag);
                 break;
             case R.id.Bmes:
-                setFragment(new chart());
+                setFragment(mesFrag);
                 break;
         }
 
