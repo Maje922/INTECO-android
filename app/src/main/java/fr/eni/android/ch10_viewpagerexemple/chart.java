@@ -6,9 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.charts.LineChart;
 
 import java.text.SimpleDateFormat;
@@ -21,13 +19,13 @@ import fr.eni.android.ch10_viewpagerexemple.conexion.ComunationTask;
 /**
  *
  */
-public class chart extends Fragment {
+public class Chart extends Fragment {
 
-    private LineChart lineChart;
+    protected LineChart lineChart;
     private ComunationTask com;
     private Date date = new Date();
 
-    public chart() {
+    public Chart() {
     }
 
 
@@ -60,17 +58,17 @@ public class chart extends Fragment {
     }
 
     //se obtiene la fecha en los dos formatos necesarios
-    private String setDateURL(Date date){
+    protected String setDateURL(Date date){
         return new SimpleDateFormat("yyyyMMdd").format(date);
     }
 
 
-    private String setDateFormat(Date date) {
+    protected String setDateFormat(Date date) {
         return new SimpleDateFormat("yyyy/MM/dd").format(date);
     }
 
     //generacion de la grafica con ComunationTask
-    private void setChart(Date date){
+    protected void setChart(Date date){
         //obtencion de la fecha en sus formatos
         String fecha = setDateURL(date);
         String fechaformat = setDateFormat(date);

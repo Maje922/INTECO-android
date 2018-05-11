@@ -10,13 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 import com.github.barteksc.pdfviewer.PDFView;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class readingPDF extends Fragment implements View.OnClickListener{
+public class readingPDF extends Transiccion implements View.OnClickListener{
 
 
     private PDFView pdfView;
@@ -27,6 +28,7 @@ public class readingPDF extends Fragment implements View.OnClickListener{
         // Required empty public constructor
     }
 
+    //creamos nueva instancia para poder generar el fragment con un pdf determinado
     public static Fragment newInstance(final String msg) {
         readingPDF f = new readingPDF();
         Bundle bdl = new Bundle(1);
@@ -36,6 +38,7 @@ public class readingPDF extends Fragment implements View.OnClickListener{
 
     }
 
+    //recuperamos el valor del string nombreFile
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +53,7 @@ public class readingPDF extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reading_pd, container, false);
 
-
+        //recuperamos pdfView del view
         pdfView = view.findViewById(R.id.pdfView);
 
         view.findViewById(R.id.returnBP).setOnClickListener(this);
@@ -65,15 +68,14 @@ public class readingPDF extends Fragment implements View.OnClickListener{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
+        //abrimos el pdf deseado y lo asignamos a la vista
         pdfView.fromAsset(nombreFile).load();
     }
 
-
+    //cuando se pulse el botón volverá al fragment readPDF
     @Override
     public void onClick(View v) {
-        FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.frag,new ReadPDF()).commit();
+        changeFragment(R.id.frag,new ReadPDF());
     }
 
 }

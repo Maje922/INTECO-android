@@ -13,11 +13,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Search extends Fragment implements View.OnClickListener{
+public class Search extends Transiccion implements View.OnClickListener{
     private Fragment fragment;
     private Fragment diaFrag;
     private Fragment mesFrag;
@@ -37,54 +43,29 @@ public class Search extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         diaFrag = new dia();
-        mesFrag = new chart();
+        mesFrag = SearchChart.newInstance(new GregorianCalendar(2018, 0, 1).getTime());
 
         view.findViewById(R.id.Bdia).setOnClickListener(this);
         view.findViewById(R.id.Bmes).setOnClickListener(this);
 
-       setFragment(diaFrag);
-        //fragment = fm.findFragmentById(R.id.cosa);
-
-
-        /*fragments = new Fragment[2];
-        fragments[0] = MyFragment.newInstance("dia");
-        fragments[1] = MyFragment.newInstance("mes");
-
-
-        replaceFragment(new info());*/
-
-
-
-
+        changeFragment(R.id.cosa,diaFrag);
 
         return view;
     }
 
-    private void setFragment(Fragment fr){
-        FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.cosa,fr).commit();
-    }
 
     @Override
     public void onClick(View v) {
 
         switch (v.getId()){
             case R.id.Bdia:
-                setFragment(diaFrag);
+                changeFragment(R.id.cosa,diaFrag);
                 break;
             case R.id.Bmes:
-                setFragment(mesFrag);
+                changeFragment(R.id.cosa,mesFrag);
                 break;
         }
 
     }
-
-   /* public void replaceFragment(Fragment someFragment) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.vista, someFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-*/
 
 }

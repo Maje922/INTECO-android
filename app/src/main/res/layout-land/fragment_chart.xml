@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".chart">
+    tools:context=".Chart">
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/combinedChart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-    
+
 </LinearLayout>

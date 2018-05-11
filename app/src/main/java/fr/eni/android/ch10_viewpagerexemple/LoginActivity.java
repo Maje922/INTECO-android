@@ -20,9 +20,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //recuepramos los elementos del view
         etPass = findViewById(R.id.etPass);
         tvError = findViewById(R.id.tvError);
         cardView = findViewById(R.id.cardView);
+
+        //comprobamos si la constraseña es correcta
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

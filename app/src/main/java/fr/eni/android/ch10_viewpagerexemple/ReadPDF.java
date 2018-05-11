@@ -21,12 +21,10 @@ import java.io.File;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
-public class ReadPDF extends Fragment implements View.OnClickListener {
+public class ReadPDF extends Transiccion implements View.OnClickListener {
 
-    private Button[] botones = new Button[6];
-    //private View view;
-    //private PDFView pdfView;
-    private String nombreFile;
+    private View[] botones = new View[7];
+
     private FloatingActionButton buttonAtras;
 
     public ReadPDF() {
@@ -37,79 +35,57 @@ public class ReadPDF extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_read_pd, container, false);
 
-        //Se crea un array de botones que abrirán los PDF
+        //Se crea un array de botones y se recuperan del view
         botones[0] = view.findViewById(R.id.button);
         botones[1] = view.findViewById(R.id.button2);
         botones[2] = view.findViewById(R.id.button3);
         botones[3] = view.findViewById(R.id.button4);
         botones[4] = view.findViewById(R.id.button5);
         botones[5] = view.findViewById(R.id.button6);
+        botones[6] = view.findViewById(R.id.returnBB);
 
-        buttonAtras = view.findViewById(R.id.returnBB);
-        buttonAtras.setOnClickListener(this);
-        //pdfView = view.findViewById(R.id.pdfView);
-
-        //se recorre el array, siendo los botones visibles y los PDF(junto al ActionButton) invisibles
+        //se recorre el arrray de botones para asignarles el evento setOnClickListener
         for (int i = 0; i < botones.length;i++) {
             botones[i].setOnClickListener(this);
-            //botones[i].setVisibility(VISIBLE);
         }
-        //pdfView.setVisibility(INVISIBLE);
 
         return view;
     }
 
-
     @Override
     public void onClick(View v) {
+        int view = R.id.frag;
+        Fragment destino = new Fragment();
+
         switch (v.getId()) {
             case R.id.button:
-                nombreFile = "PotenciasNormalizadas.pdf";
-                cargarPDF();
+                destino = readingPDF.newInstance("PotenciasNormalizadas.pdf");
                 break;
             case R.id.button2:
-                nombreFile = "Calendario.pdf";
-                cargarPDF();
+                destino = readingPDF.newInstance("Calendario.pdf");
                 break;
             case R.id.button3:
-                nombreFile = "Calendario2.pdf";
-                cargarPDF();
+                destino = readingPDF.newInstance("Calendario2.pdf");
                 break;
             case R.id.button4:
-                nombreFile = "Calendario3.pdf";
-                cargarPDF();
+                destino = readingPDF.newInstance("Calendario3.pdf");
                 break;
             case R.id.button5:
-                nombreFile = "CURVAICP.pdf";
-                cargarPDF();
+                destino = readingPDF.newInstance("CURVAICP.pdf");
                 break;
             case R.id.button6:
-                nombreFile = "DHsTarifas.pdf";
-                cargarPDF();
+                destino = readingPDF.newInstance( "DHsTarifas.pdf");
                 break;
             case R.id.returnBB:
-                FragmentManager fm = getFragmentManager();
-                fm.beginTransaction().replace(R.id.frag,new info()).commit();
+                destino = new info();
                 break;
         }
+
+        changeFragment(R.id.frag,destino);
     }
 
-    //método para leer los pdf desde Asset.folder y ocultar botones
-    public void cargarPDF() {
 
-        FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.frag,readingPDF.newInstance(nombreFile)).commit();
 
-    }
 
-   /* public void pushButton() {
-        for (int i = 0; i < botones.length; i++) {
-            botones[i].setVisibility(VISIBLE);
-        }
-        pdfView.setVisibility(View.INVISIBLE);
-
-        //pdfView.setVisibility(pdfView.getVisibility()==View.INVISIBLE?View.INVISIBLE:View.VISIBLE);
-
-    }*/
 }
 

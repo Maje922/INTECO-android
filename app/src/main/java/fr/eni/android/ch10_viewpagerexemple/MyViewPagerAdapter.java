@@ -13,9 +13,9 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter{
         tab = new String[]
                 {"Últimos datos", "Buscar por fecha", "Información y contacto"};
 
-        fragments[0] = new chart();
+        fragments[0] = new Chart();
         fragments[1] = new Search();
-        fragments[2] = new transiccion();
+        fragments[2] = new Transiccion();
     }
 
     @Override

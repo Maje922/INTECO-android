@@ -5,25 +5,22 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ *
  */
-public class info extends Fragment implements View.OnClickListener {
+public class info extends Transiccion implements View.OnClickListener {
 
 
     public info() {
-        // Required empty public constructor
+
     }
 
 
@@ -48,45 +45,20 @@ public class info extends Fragment implements View.OnClickListener {
         Intent intent = new Intent();
 
         switch (v.getId()){
-            // recuperamos el email del singleton y enviamos a una app compatible
+
             case R.id.B_email:
-
-                intent = new Intent(Intent.ACTION_SEND);
-
-
-                String[] to = {this.getResources().getString(R.string.email)};
-                intent.setType("text/html");
-                intent.putExtra(Intent.EXTRA_EMAIL,to);
-                //no envia el valor del email :s
-
+                intent =  sendToSendEmail();
                 break;
             case R.id.B_gps:
-
-                // Create a Uri from an intent string. Use the result to create an Intent.
-                Uri gmmIntentUri = Uri.parse("google.navigation:q="+ this.getResources().getString(R.string.coordenadas));
-
-                // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
-                intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-
-                // Make the Intent explicit by setting the Google Maps package
-                intent.setPackage("com.google.android.apps.maps");
-
-
+                intent = sendToGPS();
                 break;
+
             case R.id.B_pdf:
-
-                /*FragmentManager fm = getFragmentManager();
-                fm.beginTransaction().replace(R.id.frag,new ReadPDF()).commit();
-                Fragment pdf = new ReadPDF();*/
-                FragmentManager fm = getFragmentManager();
-                fm.beginTransaction().replace(R.id.frag,new ReadPDF()).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
-
+                changeFragment(R.id.frag,new ReadPDF());       //cambiamos al fragment donde se muestran los diferentes archivos pdf
                 break;
 
             case R.id.B_tel:
-                intent = new Intent(Intent.ACTION_DIAL);
-            intent.setData(Uri.parse("tel:" + this.getResources().getString(R.string.telefono)));
-            Toast.makeText(getActivity(), "marcando teléfono", Toast.LENGTH_LONG).show();
+                intent = sendToPhoneCall();
             break;
         }
         //se comprueba que existe el intent para evitar un error
@@ -95,5 +67,38 @@ public class info extends Fragment implements View.OnClickListener {
         }
 
     }
+
+    //enviar a una app compatible con el envío de email y con un email destino ubicada en el archivo string
+    private Intent sendToSendEmail(){
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        String[] to = {this.getResources().getString(R.string.email)};
+        intent.setType("text/html");
+        intent.putExtra(Intent.EXTRA_EMAIL,to);
+        return intent;
+    }
+
+    //enviar a google navigation con la direccion destino ubicada en el archivo string
+    private Intent sendToGPS(){
+        // Create a Uri from an intent string. Use the result to create an Intent.
+        Uri gmmIntentUri = Uri.parse("google.navigation:q="+ this.getResources().getString(R.string.coordenadas));
+
+        // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
+        Intent intent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+
+        // Make the Intent explicit by setting the Google Maps package
+        intent.setPackage("com.google.android.apps.maps");
+        return intent;
+    }
+
+
+    //envia al marcador de telefono con el numero marcado
+    private Intent sendToPhoneCall(){
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + this.getResources().getString(R.string.telefono)));
+        Toast.makeText(getActivity(), "marcando teléfono", Toast.LENGTH_LONG).show();
+        return intent;
+    }
+
+
 
 }
