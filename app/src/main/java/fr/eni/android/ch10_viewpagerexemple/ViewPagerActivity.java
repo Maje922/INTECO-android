@@ -67,19 +67,11 @@ public class ViewPagerActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        switch (id){
-            case R.id.action_logout:
-                return true;
-
-            case R.id.action_exit:
+                EstadoLogin conf = new EstadoLogin(this);
+                conf.setLog(false);
                 finish();
-        }
 
-        if (id == R.id.action_logout) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

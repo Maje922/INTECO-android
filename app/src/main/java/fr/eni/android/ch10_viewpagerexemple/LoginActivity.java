@@ -1,6 +1,8 @@
 package fr.eni.android.ch10_viewpagerexemple;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -15,10 +17,18 @@ public class LoginActivity extends AppCompatActivity {
     private TextView tvError;
     private CardView cardView;
     private EditText etPass;
+
+    private EstadoLogin conf;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        conf = new EstadoLogin(this);
+
+
+        logueado();
 
         //recuepramos los elementos del view
         etPass = findViewById(R.id.etPass);
@@ -33,13 +43,21 @@ public class LoginActivity extends AppCompatActivity {
                 //hola
 
                 if (encript.equals(getResources().getString(R.string.hash))) {
-                    Intent intent = new Intent(LoginActivity.this,ViewPagerActivity.class);
-                    startActivity(intent);
+                    conf.setLog(true);
+                    logueado();
                 } else {
+                    conf.setLog(false);
                     tvError.setText("Password incorrecto");
                 }
             }
         });
 
+    }
+
+    private void logueado(){
+        if(conf.getLog() != false) {
+            Intent intent = new Intent(LoginActivity.this, ViewPagerActivity.class);
+            startActivity(intent);
+        }
     }
 }

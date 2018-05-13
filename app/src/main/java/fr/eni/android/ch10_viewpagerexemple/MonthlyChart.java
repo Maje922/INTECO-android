@@ -12,23 +12,22 @@ import android.widget.Toast;
 
 import java.util.Date;
 
+import fr.eni.android.ch10_viewpagerexemple.conexion.ComunationTask;
+import fr.eni.android.ch10_viewpagerexemple.conexion.ComunationTaskMonth;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchChart extends Chart {
+public class MonthlyChart extends SearchChart {
 
-
-    protected static Date date;
-    protected static String fechaString ="fecha";
-
-
-    public SearchChart() {
+    private ComunationTaskMonth com;
+    public MonthlyChart() {
         // Required empty public constructor
     }
 
     public static Fragment newInstance(Date fecha){
-        SearchChart chart = new SearchChart();
+        MonthlyChart chart = new MonthlyChart();
         Bundle bdl = new Bundle(1);
         bdl.putLong(fechaString,fecha.getTime());
         chart.setArguments(bdl);
@@ -36,19 +35,10 @@ public class SearchChart extends Chart {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            Long DateLong = getArguments().getLong(fechaString); //recuperamos la fecha de busqueda para la grafica
-            date = new Date(DateLong);
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_search_chart, container, false);
+        View view =inflater.inflate(R.layout.fragment_monthly_chart, container, false);
 
         return view;
     }
@@ -57,7 +47,7 @@ public class SearchChart extends Chart {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //recuperamos lineChart del view
-        lineChart = view.findViewById(R.id.searchChart);
+        lineChart = view.findViewById(R.id.searchMonthlyChart);
 
         if(isOnlineNet()){
             //generacion de la grafica con ComunationTask
@@ -70,4 +60,19 @@ public class SearchChart extends Chart {
 
 
     }
+
+
+    protected void setChart(Date date){
+        //obtencion de la fecha en sus formatos
+        String fecha = setDateURL(date);
+        String fechaformat = setDateFormat(date);
+
+        //generacion de la gráfica
+        com = new ComunationTaskMonth(lineChart,fechaformat);
+        String Url = "http://www.omie.es/datosPub/marginalpdbc/marginalpdbc_";
+        //Url = Url + fecha + ".1";   //fecha +1 para comprobar si esta la del dia siguiente
+        com.execute(Url);
+    }
+
+
 }

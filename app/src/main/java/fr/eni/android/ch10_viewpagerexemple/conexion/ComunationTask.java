@@ -34,9 +34,9 @@ import fr.eni.android.ch10_viewpagerexemple.CustomValueFormatter;
 
 public class ComunationTask extends AsyncTask<String, Void, String> {
 
-    private LineChart lineChart;
-    private ArrayList<BarEntry> entradas;
-    private String fecha;
+    protected LineChart lineChart;
+    protected ArrayList<BarEntry> entradas;
+    protected String fecha;
 
 
     public ComunationTask(View view,String f) {
@@ -48,8 +48,6 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         StringBuilder cadena = new StringBuilder();
         try {
-
-
             URL url = new URL(params[0]);
             URLConnection con = url.openConnection();
             //recuperacion de la respuesta JSON
@@ -75,14 +73,7 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
 
         if(result.charAt(0) != '<') {
-            entradas = new ArrayList<>();
-            String[] array = result.split(";");
-
-
-            for (int x = 6; x <= array.length; x += 6) {
-                BarEntry entrada = new BarEntry(Float.parseFloat(array[x - 3]), Float.parseFloat(array[x - 2]));
-                entradas.add(entrada);
-            }
+            entradas = getData(result);
             CrearGrafica();
         }else {
             Date date = new Date();
@@ -98,7 +89,7 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
 
 
     }
-    private void CrearGrafica(){
+    protected void CrearGrafica(){
 
         lineChart.setData(lineData());
         lineChart.animateY(3000, Easing.EasingOption.EaseInOutExpo);
@@ -111,14 +102,14 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
         YaxisRight(lineChart.getAxisRight());
     }
 
-    private void Xaxis(XAxis xAxis){
+    protected void Xaxis(XAxis xAxis){
         xAxis.setGranularityEnabled(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setGranularity(1f);
         xAxis.setAxisMinimum(0.45f);
 
     }
-    private void YaxisLeft(YAxis yAxis){
+    protected void YaxisLeft(YAxis yAxis){
         // yAxis.setSpaceBottom(0);
         yAxis.setSpaceTop(20);
         yAxis.setGranularityEnabled(true);
@@ -133,7 +124,7 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
     }
 
 
-    private LineData lineData(){
+    protected LineData lineData(){
         ArrayList<Entry> line = new ArrayList<>();
         line.addAll(entradas);
 
@@ -165,4 +156,15 @@ public class ComunationTask extends AsyncTask<String, Void, String> {
         return barData;
     }
     */
+
+    protected ArrayList getData(String result) {
+        entradas = new ArrayList<>();
+        String[] array = result.split(";");
+
+        for (int x = 6; x <= array.length; x += 6) {
+            BarEntry entrada = new BarEntry(Float.parseFloat(array[x - 3]), Float.parseFloat(array[x - 2]));
+            entradas.add(entrada);
+        }
+        return entradas;
+    }
 }

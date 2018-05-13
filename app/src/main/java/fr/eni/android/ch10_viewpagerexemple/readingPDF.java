@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,5 +78,15 @@ public class readingPDF extends Transiccion implements View.OnClickListener{
     public void onClick(View v) {
         changeFragment(R.id.frag,new ReadPDF());
     }
+
+    public boolean onKeyUp(View v, int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                changeFragment(R.id.frag,new ReadPDF());
+                return true;
+        }
+        return false;
+    }
+
 
 }

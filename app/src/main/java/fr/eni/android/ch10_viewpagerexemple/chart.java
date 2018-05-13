@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 
@@ -41,8 +42,15 @@ public class Chart extends Fragment {
         //obtencion de la fecha acual
         date = setCurrentDate();
 
-        //generacion de la grafica con ComunationTask
-        setChart(date);
+        //detectamos si ay conexion
+        if(isOnlineNet()){
+            //generacion de la grafica con ComunationTask
+            setChart(date);
+        }
+        else {
+
+            Toast.makeText(getActivity(),"no hay conexion",Toast.LENGTH_LONG).show();
+        }
 
         return view;
     }
@@ -78,5 +86,22 @@ public class Chart extends Fragment {
         String Url = "http://www.omie.es/datosPub/marginalpdbc/marginalpdbc_";
         Url = Url + fecha + ".1";   //fecha +1 para comprobar si esta la del dia siguiente
         com.execute(Url);
+    }
+
+    //metodo para detectar si hay conexion a internet
+    protected Boolean isOnlineNet() {
+
+        try {
+            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
+
+            int val           = p.waitFor();
+            boolean reachable = (val == 0);
+            return reachable;
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
     }
 }

@@ -43,7 +43,8 @@ public class Search extends Transiccion implements View.OnClickListener{
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         diaFrag = new dia();
-        mesFrag = SearchChart.newInstance(new GregorianCalendar(2018, 0, 1).getTime());
+        mesFrag = new BusquedaMes();
+       // mesFrag = SearchChart.newInstance(new GregorianCalendar(2018, 0, 1).getTime());
 
         view.findViewById(R.id.Bdia).setOnClickListener(this);
         view.findViewById(R.id.Bmes).setOnClickListener(this);

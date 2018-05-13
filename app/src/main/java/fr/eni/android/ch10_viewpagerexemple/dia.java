@@ -23,13 +23,13 @@ import java.util.GregorianCalendar;
  */
 public class dia extends Transiccion implements View.OnClickListener, AdapterView.OnItemSelectedListener{
 
-    private CalendarView fecha;
+    protected CalendarView fecha;
     private Spinner dia;
-    private Spinner mes;
-    private Spinner ano;
-    private Button enviar;
-    private Date diaSeleccion;
-    private Calendar c;
+    protected Spinner mes;
+    protected Spinner ano;
+    protected Button enviar;
+    protected Date diaSeleccion;
+    protected Calendar c;
     Month[] meses;
 
     public dia() {
@@ -78,7 +78,9 @@ public class dia extends Transiccion implements View.OnClickListener, AdapterVie
 
 
         //meses
-       spinnerMeses();
+        int mesActual = Calendar.getInstance().get(Calendar.MONTH);
+        mes.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, meses));
+        mes.setSelection(mesActual);
 
         //Dias
         spinnerDias(Calendar.getInstance().get(Calendar.MONTH));
@@ -108,7 +110,7 @@ public class dia extends Transiccion implements View.OnClickListener, AdapterVie
     }
 
     //calculo del array para los años, desde el actual hasta el 2002
-    private String[] aniosSpinner(){
+    protected String[] aniosSpinner(){
         Calendar c = Calendar.getInstance();
         String[] anos;
         int anoActual = Calendar.getInstance().get(Calendar.YEAR);
@@ -145,13 +147,14 @@ public class dia extends Transiccion implements View.OnClickListener, AdapterVie
 
     }
 
-    public void spinnerMeses(){
-         int mesActual = Calendar.getInstance().get(Calendar.MONTH);
+   /* protected void spinnerMeses(Spinner mes){
+        int mesActual = Calendar.getInstance().get(Calendar.MONTH);
         mes.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, meses));
         mes.setSelection(mesActual);
 
-    }
-    public void spinnerDias(int mesActual){
+    }*/
+
+    private void spinnerDias(int mesActual){
         int diasDelMesActual= meses[mesActual].maximoDias();
         String[] valorSpinnerDias = diasSpinner(diasDelMesActual);
         dia.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, valorSpinnerDias));

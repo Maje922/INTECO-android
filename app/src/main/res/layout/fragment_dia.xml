@@ -12,8 +12,8 @@
         android:id="@+id/calendarView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="42dp"
+        android:layout_marginTop="42dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,23 +24,21 @@
         android:id="@+id/dia"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintBottom_toTopOf="@+id/calendarView"
         app:layout_constraintEnd_toStartOf="@+id/mes"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mes"
+        app:layout_constraintStart_toStartOf="@+id/calendarView"
+        app:layout_constraintTop_toBottomOf="@+id/diaText"
         tools:ignore="MissingConstraints" />
 
     <Spinner
         android:id="@+id/mes"
-        android:layout_width="0dp"
+        android:layout_width="107dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginEnd="116dp"
         app:layout_constraintBottom_toTopOf="@+id/calendarView"
-        app:layout_constraintEnd_toStartOf="@+id/año"
-        app:layout_constraintStart_toEndOf="@+id/dia"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mesText"
         tools:ignore="MissingConstraints" />
 
@@ -48,21 +46,21 @@
         android:id="@+id/año"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="9dp"
         app:layout_constraintBottom_toTopOf="@+id/calendarView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/mes"
-        app:layout_constraintTop_toTopOf="@+id/mes"
+        app:layout_constraintTop_toBottomOf="@+id/añoText"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/diaText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:layout_marginStart="26dp"
+        android:layout_marginStart="36dp"
         android:text="@string/dia"
-        app:layout_constraintBottom_toTopOf="@+id/dia"
         app:layout_constraintStart_toStartOf="@+id/dia"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
         tools:text="@string/dia" />
 
@@ -70,10 +68,9 @@
         android:id="@+id/mesText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginStart="30dp"
         android:text="@string/mes"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/mes"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
         tools:text="@string/mes" />
@@ -82,11 +79,10 @@
         android:id="@+id/añoText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
         android:layout_marginEnd="36dp"
         android:text="@string/ano"
-        app:layout_constraintBottom_toTopOf="@+id/año"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
         tools:text="@string/ano" />
 
