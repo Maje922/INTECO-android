@@ -31,13 +31,20 @@ public class ComunationTaskMonth extends ComunationTask {
     @Override
     protected String doInBackground(String... params) {
         String cadena= new String();
-        int mes =  fecha.charAt(5);
+        String[] aux = fecha.split("/");
+        int mes =  Integer.parseInt(aux[1])-1;
         Month[] meses = Month.values();
-        int dias = meses[4].maximoDias();
-        for(int i = 00; i<dias; i++){
+        int dias = meses[mes].maximoDias();
+        for(int i = 1; i <= dias; i++){
             cadena += i;
             cadena += ";";
-            cadena += getMediaDia(mediaDia(params+String.valueOf(i)+".1"));
+
+            String urlsdf= params[0];
+            if(i<10){
+                urlsdf += "0";
+            }
+            urlsdf += String.valueOf(i)+".1";
+            cadena += getMediaDia(mediaDia(urlsdf));
             cadena += ";";
         }
         return cadena;
@@ -49,11 +56,11 @@ public class ComunationTaskMonth extends ComunationTask {
 
     }
     //devuelve los precios de un dia
-    private String mediaDia(String... params){
+    private String mediaDia(String params){
         StringBuilder cadena = new StringBuilder();
         String media;
         try {
-            URL url = new URL(params[0]);
+            URL url = new URL(params);
             URLConnection con = url.openConnection();
             //recuperacion de la respuesta JSON
             String s;
@@ -91,8 +98,8 @@ public class ComunationTaskMonth extends ComunationTask {
         entradas = new ArrayList<>();
         String[] array = result.split(";");
 
-        for (int i = 0; i <= array.length; i += 2) {
-            BarEntry entrada = new BarEntry(Float.parseFloat(array[i - 3]), Float.parseFloat(array[i - 2]));
+        for (int i = 0; i < array.length; i += 2) {
+            BarEntry entrada = new BarEntry(Float.parseFloat(array[i]), Float.parseFloat(array[i+1]));
             entradas.add(entrada);
         }
         return entradas;

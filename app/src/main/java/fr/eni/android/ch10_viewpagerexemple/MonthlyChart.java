@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import fr.eni.android.ch10_viewpagerexemple.conexion.ComunationTask;
@@ -64,13 +65,13 @@ public class MonthlyChart extends SearchChart {
 
     protected void setChart(Date date){
         //obtencion de la fecha en sus formatos
-        String fecha = setDateURL(date);
+        String fecha = new SimpleDateFormat("yyyyMM").format(date);;
         String fechaformat = setDateFormat(date);
 
         //generacion de la gráfica
         com = new ComunationTaskMonth(lineChart,fechaformat);
         String Url = "http://www.omie.es/datosPub/marginalpdbc/marginalpdbc_";
-        //Url = Url + fecha + ".1";   //fecha +1 para comprobar si esta la del dia siguiente
+        Url = Url + fecha ;   //fecha +1 para comprobar si esta la del dia siguiente
         com.execute(Url);
     }
 
