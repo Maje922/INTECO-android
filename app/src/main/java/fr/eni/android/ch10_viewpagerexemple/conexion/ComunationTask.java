@@ -133,24 +133,7 @@ try{
 
 
     }
-    /* datos de barras
-    private BarData barData(){
-        ArrayList<BarEntry> group1 = new ArrayList<>();
-        group1.addAll(entradas);
 
-        BarDataSet barDataSet = new BarDataSet(group1, "Brand 1");
-        //barDataSet.setColor(Color.rgb(0, 155, 0));
-
-        barDataSet.setStackLabels(getXAxisValues());  // no funciona
-        barDataSet.setColors(Color.parseColor("#3062b8"));
-
-        BarData barData = new BarData(barDataSet);
-
-        barData.setValueTextSize(10);
-
-        return barData;
-    }
-    */
 
     protected String obtenerDatosDia(String params){
         StringBuilder cadena = new StringBuilder();
@@ -183,7 +166,7 @@ try{
         float suma = 0;
         for (int i = 6; i <= array.length; i += 6) {
             horas++;
-            suma = Float.parseFloat(array[i - 2]);
+            suma += Float.parseFloat(array[i - 2]);
         }
         return (suma / horas);
     }

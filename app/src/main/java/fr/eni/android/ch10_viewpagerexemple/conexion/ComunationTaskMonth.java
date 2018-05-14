@@ -12,17 +12,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import fr.eni.android.ch10_viewpagerexemple.Month;
 
 public class ComunationTaskMonth extends ComunationTask {
 
-
-    /*
-     protected LineChart lineChart;
-    protected ArrayList<BarEntry> entradas;
-    protected String fecha;
-    * */
     public ComunationTaskMonth(View view, String f) {
         super(view, f);
     }
@@ -30,9 +27,12 @@ public class ComunationTaskMonth extends ComunationTask {
     protected String doInBackground(String... params) {
         String cadena= new String();
         String[] aux = fecha.split("/");
-        int mes =  Integer.parseInt(aux[1])-1;
-        Month[] meses = Month.values();
-        int dias = meses[mes].maximoDias();
+        fecha = aux[0] + "/" + aux[1];      //guardamos la fecha solo como año y mes puesto que el dia no nos interesa
+        GregorianCalendar calendar = new GregorianCalendar(Integer.parseInt(aux[0]),Integer.parseInt(aux[1])-1, 1);
+        //int mes =  Integer.parseInt(aux[1])-1;
+        //Month[] meses = Month.values();
+        //int dias = meses[mes].maximoDias();
+        int dias = diasMes(calendar);
         for(int i = 1; i <= dias; i++){
             cadena += i;
             cadena += ";";
@@ -52,35 +52,8 @@ public class ComunationTaskMonth extends ComunationTask {
             entradas = getData(result);
             CrearGrafica();
     }
-    //devuelve los precios de un dia
-    private String datosDia(String params){
-        StringBuilder cadena = new StringBuilder();
 
-        try {
-            URL url = new URL(params);
-            URLConnection con = url.openConnection();
-            //recuperacion de la respuesta JSON
-            String s;
-            InputStream is = con.getInputStream();
-            //utilizamos UTF-8 para que interprete
-            //correctamente las ñ y acentos
-            BufferedReader bf = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-            while ((s = bf.readLine()) != null) {
-                if (s.equals("MARGINALPDBC;") || s.equals("*")) {
-
-                } else{
-                    cadena.append(s);
-                }
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        return cadena.toString();
-    }
-
-
-
+    @Override
     protected ArrayList getData(String result) {
         entradas = new ArrayList<>();
         String[] array = result.split(";");
@@ -90,6 +63,20 @@ public class ComunationTaskMonth extends ComunationTask {
             entradas.add(entrada);
         }
         return entradas;
+    }
+
+    private int diasMes( GregorianCalendar fecha){
+        int totalDias;
+        GregorianCalendar cosa = new GregorianCalendar();
+        int actualMes = cosa.get(GregorianCalendar.MONTH);
+        int fechaMes = fecha.get(GregorianCalendar.MONTH);
+        if(fechaMes == actualMes){
+            totalDias = cosa.get(GregorianCalendar.DAY_OF_MONTH);
+        }
+        else{
+            totalDias =  fecha.getActualMaximum(Calendar.DAY_OF_MONTH);
+        }
+        return totalDias;
     }
 
 

@@ -25,7 +25,7 @@ import fr.eni.android.ch10_viewpagerexemple.conexion.ComunationTaskMonth;
 public class MonthlyChart extends SearchChart {
 
     private ComunationTaskMonth com;
-    //private LineChart lineChart;
+    private LineChart lineChart;
     public MonthlyChart() {
         super();
         // Required empty public constructor
@@ -33,22 +33,42 @@ public class MonthlyChart extends SearchChart {
 
 
     public static Fragment newInstance(Date fecha){
-        Fragment chart = new MonthlyChart();
+       MonthlyChart chart = new MonthlyChart();
         Bundle bdl = new Bundle(1);
         bdl.putLong(fechaString,fecha.getTime());
         chart.setArguments(bdl);
         return chart;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            Long DateLong = getArguments().getLong(fechaString); //recuperamos la fecha de busqueda para la grafica
+            date = new Date(DateLong);
+        }
 
+    }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_monthly_chart, container, true);
+        View view =inflater.inflate(R.layout.fragment_monthly_chart, container, false);
+        //lineChart = view.findViewById(R.id.searchMonthlyChart);
         lineChart = view.findViewById(R.id.searchMonthlyChart);
+        return view;
+    }
+
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //recuperamos lineChart del view
+
+
         if(isOnlineNet()){
             //generacion de la grafica con ComunationTask
             setChart(date);
@@ -57,26 +77,9 @@ public class MonthlyChart extends SearchChart {
 
             Toast.makeText(getActivity(),"no hay conexion",Toast.LENGTH_LONG).show();
         }
-        return view;
-    }
 
-//    @Override
-//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//        //recuperamos lineChart del view
-//       // lineChart = view.findViewById(R.id.searchMonthlyChart);
-//
-//        if(isOnlineNet()){
-//            //generacion de la grafica con ComunationTask
-//            setChart(date);
-//        }
-//        else {
-//
-//            Toast.makeText(getActivity(),"no hay conexion",Toast.LENGTH_LONG).show();
-//        }
-//
-//
-//    }
+
+    }
 
 
     protected void setChart(Date date){
