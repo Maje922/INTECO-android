@@ -11,9 +11,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import fr.eni.android.ch10_viewpagerexemple.Month;
 
@@ -44,7 +42,7 @@ public class ComunationTaskMonth extends ComunationTask {
                 urlsdf += "0";
             }
             urlsdf += String.valueOf(i)+".1";
-            cadena += getMediaDia(mediaDia(urlsdf));
+            cadena += getMediaDia(obtenerDatosDia(urlsdf));
             cadena += ";";
         }
         return cadena;
@@ -53,12 +51,11 @@ public class ComunationTaskMonth extends ComunationTask {
     protected void onPostExecute(String result) {
             entradas = getData(result);
             CrearGrafica();
-
     }
     //devuelve los precios de un dia
-    private String mediaDia(String params){
+    private String datosDia(String params){
         StringBuilder cadena = new StringBuilder();
-        String media;
+
         try {
             URL url = new URL(params);
             URLConnection con = url.openConnection();
@@ -78,21 +75,11 @@ public class ComunationTaskMonth extends ComunationTask {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        //entradas = getData(cadena.toString());
+
         return cadena.toString();
     }
 
-    //devuelve la media de precio de un dia
-    protected float getMediaDia(String result) {
-        String[] array = result.split(";");
-        int horas = 0;
-        float suma = 0;
-        for (int i = 6; i <= array.length; i += 6) {
-            horas ++;
-            suma = Float.parseFloat(array[i - 2]);
-        }
-        return (suma/horas);
-    }
+
 
     protected ArrayList getData(String result) {
         entradas = new ArrayList<>();
@@ -104,5 +91,7 @@ public class ComunationTaskMonth extends ComunationTask {
         }
         return entradas;
     }
+
+
 
 }

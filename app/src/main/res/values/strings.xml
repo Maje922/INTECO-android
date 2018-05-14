@@ -32,7 +32,7 @@
     <string name="pass">4c882dcb24bcb1bc225391a602feca7c</string>
 
     <!-- selectores -->
-    <string name="boton">Mostrar gráfica</string>
+    <string name="mostrarGrafica">Mostrar gráfica</string>
     <string name="dia">Dia</string>
     <string name="mes">Mes</string>
     <string name="ano">Año</string>

@@ -28,47 +28,116 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import fr.eni.android.ch10_viewpagerexemple.CustomValueFormatter;
+import fr.eni.android.ch10_viewpagerexemple.Month;
 
 /**
  * Created by Usuario on 04/05/2018.
  */
 
-public class ComunationTask extends AsyncTask<String, Void, String> {
+public class ComunationTask2 extends AsyncTask<String, Void, String> {
 
     protected LineChart lineChart;
     protected ArrayList<BarEntry> entradas;
     protected String fecha;
+    protected boolean mensual;
 
 
-    public ComunationTask(View view,String f) {
+    public ComunationTask2(View view,String f, boolean mens) {
         this.lineChart = (LineChart) view;
         this.fecha = f;
+        this.mensual = mens;
     }
 
     @Override
     protected String doInBackground(String... params) {
-     return obtenerDatosDia(params[0]);
-    }
+        /*
+         String cadena= new String();
+        String[] aux = fecha.split("/");
+        int mes =  Integer.parseInt(aux[1])-1;
+        Month[] meses = Month.values();
+        int dias = meses[mes].maximoDias();
+        for(int i = 1; i <= dias; i++){
+            cadena += i;
+            cadena += ";";
 
+            String urlsdf= params[0];
+            if(i<10){
+                urlsdf += "0";
+            }
+            urlsdf += String.valueOf(i)+".1";
+            cadena += getMediaDia(mediaDia(urlsdf));
+            cadena += ";";
+        }
+        return cadena;
+        * */
+        StringBuilder cadena = new StringBuilder();
+        try {
+            if(!mensual) {
+                URL url = new URL(params[0]);
+                URLConnection con = url.openConnection();
+                //recuperacion de la respuesta JSON
+                String s;
+                InputStream is = con.getInputStream();
+                //utilizamos UTF-8 para que interprete
+                //correctamente las ñ y acentos
+                BufferedReader bf = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+                while ((s = bf.readLine()) != null) {
+                    if (s.equals("MARGINALPDBC;") || s.equals("*")) {
+
+                    } else {
+                        cadena.append(s);
+                    }
+                }
+            }
+            else{
+                String cadenaMes = new String();
+                String[] aux = fecha.split("/");
+                int mes =  Integer.parseInt(aux[1])-1;
+                Month[] meses = Month.values();
+                int dias = meses[mes].maximoDias();
+                for(int i = 1; i <= dias; i++){
+                    cadenaMes += i;
+                    cadenaMes += ";";
+
+                    String urlsdf= params[0];
+                    if(i<10){
+                        urlsdf += "0";
+                    }
+                    urlsdf += String.valueOf(i)+".1";
+                    cadenaMes += getMediaDia(mediaDia(urlsdf));
+                    cadenaMes += ";";
+                }
+                return cadenaMes;
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return cadena.toString();
+    }
 
     @Override
     protected void onPostExecute(String result) {
+        if(!mensual) {
+            if (result.charAt(0) != '<') {
+                entradas = getData(result);
+                CrearGrafica();
+            } else {
+                Date date = new Date();
+                String fecha = new SimpleDateFormat("yyyyMMdd").format(date);
+                String fechaformat = new SimpleDateFormat("yyyy/MM/dd").format(date);
+                date.toString();
+                ComunationTask ct = new ComunationTask(lineChart, fechaformat);
+                String Url = "http://www.omie.es/datosPub/marginalpdbc/marginalpdbc_";
+                Url = Url + fecha + ".1";
 
-        if(result.charAt(0) != '<') {
+                ct.execute(Url);
+            }
+
+        }
+        else{
             entradas = getData(result);
             CrearGrafica();
-        }else {
-            Date date = new Date();
-            String fecha = new SimpleDateFormat("yyyyMMdd").format(date);
-            String fechaformat = new SimpleDateFormat("yyyy/MM/dd").format(date);
-            date.toString();
-            ComunationTask ct = new ComunationTask(lineChart,fechaformat);
-            String Url = "http://www.omie.es/datosPub/marginalpdbc/marginalpdbc_";
-            Url = Url + fecha + ".1";
-
-            ct.execute(Url);
         }
-
 
     }
     protected void CrearGrafica(){
@@ -152,8 +221,29 @@ try{
     }
     */
 
-    protected String obtenerDatosDia(String params){
+    protected ArrayList getData(String result) {
+        entradas = new ArrayList<>();
+        String[] array = result.split(";");
+
+        if(!mensual) {
+            for (int x = 6; x <= array.length; x += 6) {
+                BarEntry entrada = new BarEntry(Float.parseFloat(array[x - 3]), Float.parseFloat(array[x - 2]));
+                entradas.add(entrada);
+            }
+        }
+        else{
+            for (int i = 0; i < array.length; i += 2) {
+                BarEntry entrada = new BarEntry(Float.parseFloat(array[i]), Float.parseFloat(array[i+1]));
+                entradas.add(entrada);
+            }
+        }
+        return entradas;
+    }
+
+     //devuelve los precios de un dia
+    private String mediaDia(String params){
         StringBuilder cadena = new StringBuilder();
+        String media;
         try {
             URL url = new URL(params);
             URLConnection con = url.openConnection();
@@ -173,29 +263,19 @@ try{
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        //entradas = getData(cadena.toString());
         return cadena.toString();
-
     }
+
     //devuelve la media de precio de un dia
     protected float getMediaDia(String result) {
         String[] array = result.split(";");
         int horas = 0;
         float suma = 0;
         for (int i = 6; i <= array.length; i += 6) {
-            horas++;
+            horas ++;
             suma = Float.parseFloat(array[i - 2]);
         }
-        return (suma / horas);
-    }
-
-    protected ArrayList getData(String result) {
-        entradas = new ArrayList<>();
-        String[] array = result.split(";");
-
-        for (int x = 6; x <= array.length; x += 6) {
-            BarEntry entrada = new BarEntry(Float.parseFloat(array[x - 3]), Float.parseFloat(array[x - 2]));
-            entradas.add(entrada);
-        }
-        return entradas;
+        return (suma/horas);
     }
 }

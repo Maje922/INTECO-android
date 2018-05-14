@@ -15,7 +15,7 @@ import java.text.ParsePosition;
 import java.util.Date;
 
 
-public class ViewPagerActivity extends AppCompatActivity {
+public class ViewPagerActivity extends AppCompatActivity  {
 
     private ViewPager mViewPager;
     private MyViewPagerAdapter mAdapter;

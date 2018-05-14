@@ -25,6 +25,7 @@ public class BusquedaMes extends dia implements View.OnClickListener,AdapterView
 
 
     public BusquedaMes() {
+        super();
         // Required empty public constructor
     }
 
@@ -44,8 +45,6 @@ public class BusquedaMes extends dia implements View.OnClickListener,AdapterView
         //asignacion de eventos
         mes.setOnItemSelectedListener(this);
         ano.setOnItemSelectedListener(this);
-
-
 
         enviar.setOnClickListener(this);
 

@@ -30,7 +30,7 @@ public class dia extends Transiccion implements View.OnClickListener, AdapterVie
     protected Button enviar;
     protected Date diaSeleccion;
     protected Calendar c;
-    Month[] meses;
+    protected Month[] meses;
 
     public dia() {
         // Required empty public constructor

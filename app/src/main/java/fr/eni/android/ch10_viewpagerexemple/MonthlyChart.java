@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.LineChart;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,33 +25,30 @@ import fr.eni.android.ch10_viewpagerexemple.conexion.ComunationTaskMonth;
 public class MonthlyChart extends SearchChart {
 
     private ComunationTaskMonth com;
+    //private LineChart lineChart;
     public MonthlyChart() {
+        super();
         // Required empty public constructor
     }
 
+
     public static Fragment newInstance(Date fecha){
-        MonthlyChart chart = new MonthlyChart();
+        Fragment chart = new MonthlyChart();
         Bundle bdl = new Bundle(1);
         bdl.putLong(fechaString,fecha.getTime());
         chart.setArguments(bdl);
         return chart;
     }
 
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_monthly_chart, container, false);
-
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        //recuperamos lineChart del view
+        View view =inflater.inflate(R.layout.fragment_monthly_chart, container, true);
         lineChart = view.findViewById(R.id.searchMonthlyChart);
-
         if(isOnlineNet()){
             //generacion de la grafica con ComunationTask
             setChart(date);
@@ -58,9 +57,26 @@ public class MonthlyChart extends SearchChart {
 
             Toast.makeText(getActivity(),"no hay conexion",Toast.LENGTH_LONG).show();
         }
-
-
+        return view;
     }
+
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//        //recuperamos lineChart del view
+//       // lineChart = view.findViewById(R.id.searchMonthlyChart);
+//
+//        if(isOnlineNet()){
+//            //generacion de la grafica con ComunationTask
+//            setChart(date);
+//        }
+//        else {
+//
+//            Toast.makeText(getActivity(),"no hay conexion",Toast.LENGTH_LONG).show();
+//        }
+//
+//
+//    }
 
 
     protected void setChart(Date date){
@@ -74,6 +90,7 @@ public class MonthlyChart extends SearchChart {
         Url = Url + fecha ;   //fecha +1 para comprobar si esta la del dia siguiente
         com.execute(Url);
     }
+
 
 
 }

@@ -45,6 +45,7 @@ public class Chart extends Fragment {
         //detectamos si ay conexion
         if(isOnlineNet()){
             //generacion de la grafica con ComunationTask
+
             setChart(date);
         }
         else {

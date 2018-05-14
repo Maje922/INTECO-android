@@ -24,7 +24,7 @@
             android:id="@+id/Bdia"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:text="@string/dia"
             app:layout_constraintBaseline_toBaselineOf="@+id/Bmes"
             app:layout_constraintEnd_toStartOf="@+id/Bmes"
             app:layout_constraintStart_toStartOf="parent" />
@@ -33,7 +33,7 @@
             android:id="@+id/Bmes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:text="@string/mes"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/Bdia"

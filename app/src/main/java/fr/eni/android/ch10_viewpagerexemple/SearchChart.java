@@ -28,7 +28,7 @@ public class SearchChart extends Chart {
     }
 
     public static Fragment newInstance(Date fecha){
-        SearchChart chart = new SearchChart();
+        Fragment chart = new SearchChart();
         Bundle bdl = new Bundle(1);
         bdl.putLong(fechaString,fecha.getTime());
         chart.setArguments(bdl);

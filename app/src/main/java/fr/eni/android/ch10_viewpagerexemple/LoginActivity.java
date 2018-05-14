@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String encript = Hash.md5(etPass.getText().toString());
-                //hola
+
 
                 if (encript.equals(getResources().getString(R.string.hash))) {
                     conf.setLog(true);
