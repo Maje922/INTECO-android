@@ -43,15 +43,21 @@ public class Chart extends Fragment {
         date = setCurrentDate();
 
         //detectamos si ay conexion
-        if(isOnlineNet()){
-            //generacion de la grafica con ComunationTask
 
-            setChart(date);
-        }
-        else {
+            if (isOnlineNet()) {
+                //generacion de la grafica con ComunationTask
 
-            Toast.makeText(getActivity(),"no hay conexion",Toast.LENGTH_LONG).show();
-        }
+                try {
+                    setChart(date);
+                }
+                catch (Exception e){
+                }
+            } else {
+
+                Toast.makeText(getActivity(), "no hay conexion", Toast.LENGTH_LONG).show();
+            }
+
+
 
         return view;
     }
@@ -93,14 +99,14 @@ public class Chart extends Fragment {
     protected Boolean isOnlineNet() {
 
         try {
-            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.es");
+            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.omie.es");
 
             int val           = p.waitFor();
             boolean reachable = (val == 0);
             return reachable;
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
         return false;

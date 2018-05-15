@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".Search"
+    tools:layout_editor_absoluteY="73dp">
+
+    <FrameLayout
+        android:id="@+id/cosa"
+        android:layout_width="584dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/Bmes"
+        app:layout_constraintEnd_toEndOf="@+id/Bdia"
+        app:layout_constraintStart_toEndOf="@+id/Bdia"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/Bdia"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:text="@string/dia"
+        app:layout_constraintBaseline_toBaselineOf="@+id/Bmes"
+        app:layout_constraintEnd_toStartOf="@+id/Bmes"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Bmes"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:text="@string/mes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Bdia"
+        app:layout_constraintTop_toBottomOf="@+id/cosa" />
+
+
+</android.support.constraint.ConstraintLayout>

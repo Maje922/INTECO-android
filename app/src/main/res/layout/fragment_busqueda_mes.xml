@@ -10,14 +10,16 @@
 
     <CalendarView
         android:id="@+id/calendarView2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="40dp"
-        android:layout_marginStart="6dp"
         android:layout_marginTop="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
 
     <Button
         android:id="@+id/mostrarGrafica"
@@ -33,39 +35,39 @@
         android:id="@+id/mes"
         android:layout_width="134dp"
         android:layout_height="0dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="58dp"
         app:layout_constraintBottom_toTopOf="@+id/calendarView2"
-        app:layout_constraintStart_toStartOf="@+id/calendarView2"
-        app:layout_constraintTop_toTopOf="@+id/año" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mesText" />
 
     <Spinner
         android:id="@+id/año"
-        android:layout_width="125dp"
+        android:layout_width="110dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginStart="17dp"
         app:layout_constraintBottom_toTopOf="@+id/calendarView2"
         app:layout_constraintEnd_toEndOf="@+id/calendarView2"
-        app:layout_constraintTop_toBottomOf="@+id/añoString" />
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintStart_toEndOf="@+id/mes"
+        app:layout_constraintTop_toBottomOf="@+id/añoString"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/mesText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/mes" />
+        android:layout_marginStart="33dp"
+        android:text="@string/mes"
+        app:layout_constraintStart_toStartOf="@+id/mes"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/añoString"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="55dp"
-        android:layout_marginStart="55dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/calendarView2"
+        android:layout_marginStart="16dp"
+        android:text="@string/ano"
         app:layout_constraintStart_toStartOf="@+id/año"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/ano" />
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

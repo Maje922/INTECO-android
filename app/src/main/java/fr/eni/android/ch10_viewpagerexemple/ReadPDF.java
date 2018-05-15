@@ -1,28 +1,14 @@
 package fr.eni.android.ch10_viewpagerexemple;
 
-import android.app.Activity;
 import android.support.v4.app.Fragment;
-import android.content.Intent;
-import android.content.res.AssetManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.github.barteksc.pdfviewer.PDFView;
 
-import java.io.File;
-
-import static android.view.View.INVISIBLE;
-import static android.view.View.VISIBLE;
-
-public class ReadPDF extends Transiccion implements View.OnClickListener {
+public class ReadPDF extends Transiccion implements View.OnClickListener{
 
     private View[] botones = new View[7];
 
@@ -84,6 +70,7 @@ public class ReadPDF extends Transiccion implements View.OnClickListener {
 
         changeFragment(R.id.frag,destino);
     }
+
 
 }
 

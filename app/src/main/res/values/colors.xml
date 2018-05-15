@@ -2,5 +2,7 @@
 <resources>
     <color name="azulInteco">#3062b8</color>
     <color name="AzulOscuro">#21447F</color>
+    <color name="transparente">#00000000</color>
+    <color name="azulMasOscuro">#112240</color>
 
 </resources>

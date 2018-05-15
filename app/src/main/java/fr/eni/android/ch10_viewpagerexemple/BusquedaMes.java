@@ -1,6 +1,7 @@
 package fr.eni.android.ch10_viewpagerexemple;
 
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,10 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
-import fr.eni.android.ch10_viewpagerexemple.conexion.ComunationTask;
+import java.util.GregorianCalendar;
 
 
 /**
@@ -41,6 +40,8 @@ public class BusquedaMes extends dia implements View.OnClickListener,AdapterView
         enviar = view.findViewById(R.id.mostrarGrafica);
         mes = view.findViewById(R.id.mes);
         ano = view.findViewById(R.id.año);
+
+
 
         //asignacion de eventos
         mes.setOnItemSelectedListener(this);

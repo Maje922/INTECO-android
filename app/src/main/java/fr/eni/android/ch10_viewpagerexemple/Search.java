@@ -1,30 +1,18 @@
 package fr.eni.android.ch10_viewpagerexemple;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
-
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class Search extends Transiccion implements View.OnClickListener{
-    private Fragment fragment;
     private Fragment diaFrag;
     private Fragment mesFrag;
 
@@ -46,10 +34,17 @@ public class Search extends Transiccion implements View.OnClickListener{
         mesFrag = new BusquedaMes();
        // mesFrag = SearchChart.newInstance(new GregorianCalendar(2018, 0, 1).getTime());
 
-        view.findViewById(R.id.Bdia).setOnClickListener(this);
-        view.findViewById(R.id.Bmes).setOnClickListener(this);
+        dia = view.findViewById(R.id.Bdia);
+        mes = view.findViewById(R.id.Bmes);
+
+        dia.setOnClickListener(this);
+        mes.setOnClickListener(this);
 
         changeFragment(R.id.cosa,diaFrag);
+        botonSel(dia);
+        botonNotSel(mes);
+
+
 
         return view;
     }
@@ -61,12 +56,27 @@ public class Search extends Transiccion implements View.OnClickListener{
         switch (v.getId()){
             case R.id.Bdia:
                 changeFragment(R.id.cosa,diaFrag);
+                botonSel(dia);
+                botonNotSel(mes);
+
                 break;
             case R.id.Bmes:
                 changeFragment(R.id.cosa,mesFrag);
+                botonSel(mes);
+                botonNotSel(dia);
                 break;
         }
 
+    }
+
+    private void botonNotSel(Button b){
+        b.setBackgroundColor(Color.parseColor("#f8f8f8"));
+        b.setTextColor(Color.parseColor("#21447F"));
+    }
+
+    private void botonSel(Button b){
+        b.setBackgroundColor(Color.parseColor("#21447F"));
+        b.setTextColor(Color.parseColor("#f8f8f8"));
     }
 
 }

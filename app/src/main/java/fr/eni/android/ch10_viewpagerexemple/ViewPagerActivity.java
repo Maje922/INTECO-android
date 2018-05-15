@@ -1,21 +1,18 @@
 package fr.eni.android.ch10_viewpagerexemple;
 
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
-import java.text.DateFormat;
-import java.text.FieldPosition;
-import java.text.ParsePosition;
-import java.util.Date;
+import android.view.View;
 
 
-public class ViewPagerActivity extends AppCompatActivity  {
+public class ViewPagerActivity extends AppCompatActivity implements View.OnKeyListener {
 
     private ViewPager mViewPager;
     private MyViewPagerAdapter mAdapter;
@@ -51,6 +48,7 @@ public class ViewPagerActivity extends AppCompatActivity  {
         mViewPager.setAdapter(mAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#21447F"));
         //indica a tablayout cuál es el viewpager a escuchar
         try {
             tabLayout.setupWithViewPager(mViewPager);
@@ -76,4 +74,15 @@ public class ViewPagerActivity extends AppCompatActivity  {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        EstadoLogin conf = new EstadoLogin(this);
+        conf.setLog(false);
+        finish();
+    }
 }

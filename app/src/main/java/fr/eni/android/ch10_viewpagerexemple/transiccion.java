@@ -7,8 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-
 
 /**
  * este fragment solo es para moverse entre los fragments info, readPDF y readingPDF

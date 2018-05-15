@@ -18,7 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+       />
 
     <Spinner
         android:id="@+id/dia"
@@ -30,7 +31,8 @@
         app:layout_constraintEnd_toStartOf="@+id/mes"
         app:layout_constraintStart_toStartOf="@+id/calendarView"
         app:layout_constraintTop_toBottomOf="@+id/diaText"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        />
 
     <Spinner
         android:id="@+id/mes"
@@ -88,6 +90,9 @@
 
     <Button
         android:id="@+id/mostrarGrafica"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
+        android:background="@drawable/buttonlist"
+        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginBottom="3dp"
@@ -97,5 +102,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView"
         tools:ignore="MissingConstraints"
-        tools:text="@string/boton" />
+        tools:text="@string/mostrarGrafica" />
 </android.support.constraint.ConstraintLayout>

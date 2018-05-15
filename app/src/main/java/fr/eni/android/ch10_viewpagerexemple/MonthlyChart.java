@@ -15,7 +15,6 @@ import com.github.mikephil.charting.charts.LineChart;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import fr.eni.android.ch10_viewpagerexemple.conexion.ComunationTask;
 import fr.eni.android.ch10_viewpagerexemple.conexion.ComunationTaskMonth;
 
 
@@ -74,7 +73,6 @@ public class MonthlyChart extends SearchChart {
             setChart(date);
         }
         else {
-
             Toast.makeText(getActivity(),"no hay conexion",Toast.LENGTH_LONG).show();
         }
 

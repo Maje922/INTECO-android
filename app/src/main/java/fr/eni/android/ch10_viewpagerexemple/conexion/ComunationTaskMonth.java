@@ -29,9 +29,7 @@ public class ComunationTaskMonth extends ComunationTask {
         String[] aux = fecha.split("/");
         fecha = aux[0] + "/" + aux[1];      //guardamos la fecha solo como año y mes puesto que el dia no nos interesa
         GregorianCalendar calendar = new GregorianCalendar(Integer.parseInt(aux[0]),Integer.parseInt(aux[1])-1, 1);
-        //int mes =  Integer.parseInt(aux[1])-1;
-        //Month[] meses = Month.values();
-        //int dias = meses[mes].maximoDias();
+
         int dias = diasMes(calendar);
         for(int i = 1; i <= dias; i++){
             cadena += i;

@@ -1,7 +1,7 @@
 package fr.eni.android.ch10_viewpagerexemple;
 
 public enum Month {
-    Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, diciembre;
+    Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre;
 
     public int maximoDias() {
         switch (this) {
