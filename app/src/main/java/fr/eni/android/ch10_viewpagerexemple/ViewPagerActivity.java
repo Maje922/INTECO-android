@@ -31,7 +31,6 @@ public class ViewPagerActivity extends AppCompatActivity implements View.OnKeyLi
             public void onPageScrolled(int position,
                                        float positionOffset,
                                        int positionOffsetPixels) {
-
             }
 
             @Override

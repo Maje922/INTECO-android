@@ -15,9 +15,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="37dp"
-        android:background="#64ffffff"
         android:elevation="1dp"
-        app:srcCompat="@drawable/logo_inteco" />
+        app:srcCompat="@drawable/ic_intecologo" />
 
     <EditText
         android:id="@+id/etPass"

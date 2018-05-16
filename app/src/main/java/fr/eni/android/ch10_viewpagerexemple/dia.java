@@ -66,6 +66,9 @@ public class dia extends Transiccion implements View.OnClickListener, AdapterVie
 
         meses = Month.values();
 
+        //valor maximo y minimo de calendario
+        fecha.setMinDate(new GregorianCalendar(2002,01,01).getTime().getTime());
+        fecha.setMaxDate(diaSeleccion.getTime());
 
 
         /*valores de spinners

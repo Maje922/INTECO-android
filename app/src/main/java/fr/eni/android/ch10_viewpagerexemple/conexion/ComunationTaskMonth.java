@@ -35,7 +35,7 @@ public class ComunationTaskMonth extends ComunationTask {
             cadena += i;
             cadena += ";";
 
-            String urlsdf= params[0];
+            String urlsdf = params[0];
             if(i<10){
                 urlsdf += "0";
             }

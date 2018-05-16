@@ -54,6 +54,12 @@ public class BusquedaMes extends dia implements View.OnClickListener,AdapterView
 
         meses = Month.values();
 
+
+        //valor maximo y minimo de calendario
+        fecha.setMinDate(new GregorianCalendar(2002,01,01).getTime().getTime());
+        fecha.setMaxDate(c.getTime().getTime());
+
+
         /*valores de spinners
 
         A cada spiner se le asigna el valor correspondiente a la fecha actual al crear el fragment
