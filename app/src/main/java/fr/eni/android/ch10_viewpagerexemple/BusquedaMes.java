@@ -16,9 +16,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class BusquedaMes extends dia implements View.OnClickListener,AdapterView.OnItemSelectedListener  {
 
 
@@ -56,7 +53,7 @@ public class BusquedaMes extends dia implements View.OnClickListener,AdapterView
 
 
         //valor maximo y minimo de calendario
-        fecha.setMinDate(new GregorianCalendar(2002,01,01).getTime().getTime());
+        fecha.setMinDate(new GregorianCalendar(2002,00,01).getTime().getTime());
         fecha.setMaxDate(c.getTime().getTime());
 
 
@@ -99,6 +96,7 @@ public class BusquedaMes extends dia implements View.OnClickListener,AdapterView
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        //cuando se cambia el valor de un spinner se actualiza el calendario
         int a  = Integer.parseInt(ano.getSelectedItem().toString());
         int m  = mes.getSelectedItemPosition();
 

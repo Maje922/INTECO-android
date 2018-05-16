@@ -116,6 +116,7 @@ try{
         line.addAll(entradas);
 
         LineDataSet lineDataSet = new LineDataSet(line, "Brand 2");
+        //  lineDataSet.setColors(Color.parseColor("#3062b8"));
         lineDataSet.setColors(Color.parseColor("#36b4fc"));
         lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         lineDataSet.setDrawFilled(true);

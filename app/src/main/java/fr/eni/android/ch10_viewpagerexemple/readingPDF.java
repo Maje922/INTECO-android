@@ -14,9 +14,7 @@ import android.view.ViewGroup;
 import com.github.barteksc.pdfviewer.PDFView;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class readingPDF extends Transiccion implements View.OnClickListener{
 
 
@@ -25,7 +23,7 @@ public class readingPDF extends Transiccion implements View.OnClickListener{
 
 
     public readingPDF() {
-        // Required empty public constructor
+
     }
 
     //creamos nueva instancia para poder generar el fragment con un pdf determinado
@@ -57,9 +55,6 @@ public class readingPDF extends Transiccion implements View.OnClickListener{
         pdfView = view.findViewById(R.id.pdfView);
 
         view.findViewById(R.id.returnBP).setOnClickListener(this);
-
-
-
 
         return view;
     }

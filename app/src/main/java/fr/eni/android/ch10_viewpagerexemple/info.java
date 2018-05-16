@@ -15,7 +15,6 @@ import android.widget.Toast;
  */
 public class info extends Transiccion implements View.OnClickListener {
 
-
     public info() {
 
     }

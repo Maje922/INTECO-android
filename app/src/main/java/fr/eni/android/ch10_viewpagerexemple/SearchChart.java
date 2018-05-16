@@ -12,10 +12,6 @@ import android.widget.Toast;
 
 import java.util.Date;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SearchChart extends Chart {
 
 
@@ -24,7 +20,6 @@ public class SearchChart extends Chart {
 
 
     public SearchChart() {
-        // Required empty public constructor
     }
 
     public static Fragment newInstance(Date fecha){

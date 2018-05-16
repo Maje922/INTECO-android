@@ -3,8 +3,10 @@ package fr.eni.android.ch10_viewpagerexemple;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class EstadoLogin {
+//en esta clase se encuentra registrado el estado del login para evitar tener que introducir la
+// contrasseña cada vez que se cierre la app
 
+public class EstadoLogin {
 
     private final String SHARED_PREFS_FILE = "HMPrefs";
     private final String loged = "";

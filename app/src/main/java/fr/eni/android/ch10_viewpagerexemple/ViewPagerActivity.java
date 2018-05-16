@@ -46,8 +46,8 @@ public class ViewPagerActivity extends AppCompatActivity implements View.OnKeyLi
 
         mViewPager.setAdapter(mAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#21447F"));
+        TabLayout tabLayout = findViewById(R.id.tabs);
+
         //indica a tablayout cuál es el viewpager a escuchar
         try {
             tabLayout.setupWithViewPager(mViewPager);
@@ -78,6 +78,8 @@ public class ViewPagerActivity extends AppCompatActivity implements View.OnKeyLi
         return false;
     }
 
+
+    //actualizamos el estado del login a no logueado y cerramos el activity
     @Override
     public void onBackPressed() {
         EstadoLogin conf = new EstadoLogin(this);

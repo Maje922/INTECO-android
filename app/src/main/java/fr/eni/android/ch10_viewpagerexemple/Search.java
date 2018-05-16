@@ -9,18 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class Search extends Transiccion implements View.OnClickListener{
     private Fragment diaFrag;
     private Fragment mesFrag;
 
-    private Fragment[] fragments;
     private Button dia, mes;
 
     public Search() {
-        // Required empty public constructor
+
     }
 
 
@@ -30,16 +26,19 @@ public class Search extends Transiccion implements View.OnClickListener{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        diaFrag = new dia();
-        mesFrag = new BusquedaMes();
-       // mesFrag = SearchChart.newInstance(new GregorianCalendar(2018, 0, 1).getTime());
-
+        //recuperamos elementos del view
         dia = view.findViewById(R.id.Bdia);
         mes = view.findViewById(R.id.Bmes);
 
+        //inicializamos los fragment
+        diaFrag = new dia();
+        mesFrag = new BusquedaMes();
+
+        //asignamos eventos a los botones
         dia.setOnClickListener(this);
         mes.setOnClickListener(this);
 
+        //por defecto seleccionamos el fragment de busqueda por dia y las vistas de los botones correspondientes
         changeFragment(R.id.cosa,diaFrag);
         botonSel(dia);
         botonNotSel(mes);
@@ -49,7 +48,7 @@ public class Search extends Transiccion implements View.OnClickListener{
         return view;
     }
 
-
+    //segun el boton seleccionado se activa un fragment y las vistas correspondientes a los botones
     @Override
     public void onClick(View v) {
 
@@ -69,11 +68,12 @@ public class Search extends Transiccion implements View.OnClickListener{
 
     }
 
+    //metodo para cambiar el estilo del boton seleccionado
     private void botonNotSel(Button b){
         b.setBackgroundColor(Color.parseColor("#f8f8f8"));
         b.setTextColor(Color.parseColor("#21447F"));
     }
-
+    //metodo para cambiar el estilo del boton no seleccionado
     private void botonSel(Button b){
         b.setBackgroundColor(Color.parseColor("#21447F"));
         b.setTextColor(Color.parseColor("#f8f8f8"));

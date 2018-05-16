@@ -33,7 +33,7 @@ public class dia extends Transiccion implements View.OnClickListener, AdapterVie
     protected Month[] meses;
 
     public dia() {
-        // Required empty public constructor
+
     }
 
 
@@ -67,7 +67,7 @@ public class dia extends Transiccion implements View.OnClickListener, AdapterVie
         meses = Month.values();
 
         //valor maximo y minimo de calendario
-        fecha.setMinDate(new GregorianCalendar(2002,01,01).getTime().getTime());
+        fecha.setMinDate(new GregorianCalendar(2002,00,01).getTime().getTime());
         fecha.setMaxDate(diaSeleccion.getTime());
 
 
@@ -151,13 +151,6 @@ public class dia extends Transiccion implements View.OnClickListener, AdapterVie
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
-   /* protected void spinnerMeses(Spinner mes){
-        int mesActual = Calendar.getInstance().get(Calendar.MONTH);
-        mes.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, meses));
-        mes.setSelection(mesActual);
-
-    }*/
 
     private void spinnerDias(int mesActual){
         int diasDelMesActual= meses[mesActual].maximoDias();

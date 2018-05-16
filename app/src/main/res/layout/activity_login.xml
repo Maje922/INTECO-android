@@ -28,7 +28,7 @@
         android:drawableLeft="@drawable/ic_action_pass"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"/>
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"

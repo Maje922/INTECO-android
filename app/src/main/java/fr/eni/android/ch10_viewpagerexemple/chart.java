@@ -16,10 +16,6 @@ import java.util.Date;
 
 import fr.eni.android.ch10_viewpagerexemple.conexion.ComunationTask;
 
-
-/**
- *
- */
 public class Chart extends Fragment {
 
     protected LineChart lineChart;

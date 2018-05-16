@@ -7,10 +7,6 @@ import com.github.mikephil.charting.data.LineData;
 
 import java.util.Date;
 
-/**
- * Created by Usuario on 03/05/2018.
- */
-
 public class Entrada extends BarEntry{
 
     public Entrada(float x, float y) {

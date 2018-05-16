@@ -7,12 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 public class ReadPDF extends Transiccion implements View.OnClickListener{
 
     private View[] botones = new View[7];
-
-    private FloatingActionButton buttonAtras;
 
     public ReadPDF() {
     }
@@ -68,7 +65,7 @@ public class ReadPDF extends Transiccion implements View.OnClickListener{
                 break;
         }
 
-        changeFragment(R.id.frag,destino);
+        changeFragment(view,destino);
     }
 
 

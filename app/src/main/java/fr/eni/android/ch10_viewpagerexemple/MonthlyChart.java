@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 
@@ -17,22 +16,18 @@ import java.util.Date;
 
 import fr.eni.android.ch10_viewpagerexemple.conexion.ComunationTaskMonth;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MonthlyChart extends SearchChart {
 
     private ComunationTaskMonth com;
     private LineChart lineChart;
     public MonthlyChart() {
         super();
-        // Required empty public constructor
+
     }
 
 
     public static Fragment newInstance(Date fecha){
-       MonthlyChart chart = new MonthlyChart();
+        MonthlyChart chart = new MonthlyChart();
         Bundle bdl = new Bundle(1);
         bdl.putLong(fechaString,fecha.getTime());
         chart.setArguments(bdl);
@@ -55,7 +50,6 @@ public class MonthlyChart extends SearchChart {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_monthly_chart, container, false);
-        //lineChart = view.findViewById(R.id.searchMonthlyChart);
         lineChart = view.findViewById(R.id.searchMonthlyChart);
         return view;
     }
@@ -65,16 +59,6 @@ public class MonthlyChart extends SearchChart {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //recuperamos lineChart del view
-
-
-        if(isOnlineNet()){
-            //generacion de la grafica con ComunationTask
-            setChart(date);
-        }
-        else {
-            Toast.makeText(getActivity(),"no hay conexion",Toast.LENGTH_LONG).show();
-        }
 
 
     }

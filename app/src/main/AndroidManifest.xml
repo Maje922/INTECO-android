@@ -22,7 +22,10 @@
 
         <activity
             android:name=".ViewPagerActivity"
-            android:label="INTECO">
+            android:label="INTECO"
+            android:screenOrientation="portrait"
+
+        >
 
         </activity>
         <activity android:name=".LoginActivity">

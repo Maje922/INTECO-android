@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    //actualizamos el estado para no tener que volver a introducir la contraseña
     private void logueado(){
         if(conf.getLog() != false) {
             Intent intent = new Intent(LoginActivity.this, ViewPagerActivity.class);
